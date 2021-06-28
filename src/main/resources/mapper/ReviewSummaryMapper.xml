@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.ReviewSummaryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.ReviewSummaryDO">
+        <id column="id" property="id" />
+        <result column="totalnum" property="totalnum" />
+        <result column="totaldi" property="totaldi" />
+        <result column="account" property="account" />
+        <result column="quarter" property="quarter" />
+        <result column="totalscore" property="totalscore" />
+        <result column="totaltime" property="totaltime" />
+        <result column="criticalnum" property="criticalnum" />
+        <result column="ordinarynum" property="ordinarynum" />
+        <result column="tipnum" property="tipnum" />
+        <result column="seconddptcode" property="seconddptcode" />
+        <result column="type" property="type" />
+        <result column="domainid" property="domainid" />
+        <result column="countDate" property="countDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, totalnum, totaldi, account, quarter, totalscore, totaltime, criticalnum, ordinarynum, tipnum, seconddptcode, type, domainid, countDate
+    </sql>
+
+	<delete id="deleteByQuarterAndType" parameterType="java.util.Map">
+        delete from review_summary
+        where 1=1
+        <if test="param.typeForSoft !=null and param.typeForSoft =='软件' ">
+            and type in ("软件开发","软件测试")
+        </if>
+        <if test="param.typeForHard !=null and param.typeForHard =='硬件' ">
+            and type in ("硬件开发","硬件测试")
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+            and quarter = #{param.quarter}
+        </if>
+    </delete>
+    
+    
+</mapper>

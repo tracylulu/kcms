@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.IsoftProjectCloudListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.IsoftProjectCloudListDO">
+        <id column="id" property="id" />
+        <result column="project_id" property="projectId" />
+        <result column="project_name" property="projectName" />
+        <result column="month" property="month" />
+        <result column="accepted_code" property="acceptedCode" />
+        <result column="no_accepted_code" property="noAcceptedCode" />
+        <result column="progress_deviation" property="progressDeviation" />
+        <result column="job_number" property="jobNumber" />
+        <result column="contribution" property="contribution" />
+        <result column="di_density" property="diDensity" />
+        <result column="project_url" property="projectUrl" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, project_id, project_name, month, accepted_code, no_accepted_code, progress_deviation, job_number, contribution, di_density, project_url, sync_status, sync_time
+    </sql>
+
+</mapper>

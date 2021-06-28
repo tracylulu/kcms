@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.IdmHardwareMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.IdmHardwareDO">
+        <id column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="quarter" property="quarter" />
+        <result column="total_score" property="totalScore" />
+        <result column="SubmitNum" property="SubmitNum" />
+        <result column="EditNum" property="EditNum" />
+        <result column="LocationNum" property="LocationNum" />
+        <result column="TestNotPassNum" property="TestNotPassNum" />
+        <result column="idm_score" property="idmScore" />
+        <result column="analyze_score" property="analyzeScore" />
+        <result column="analyze_num" property="analyzeNum" />
+        <result column="qms_score" property="qmsScore" />
+        <result column="qms_num" property="qmsNum" />
+        <result column="test_num" property="testNum" />
+        <result column="test_score" property="testScore" />
+        <result column="type" property="type" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, account, quarter, total_score, SubmitNum, EditNum, LocationNum, TestNotPassNum, idm_score, analyze_score, analyze_num, qms_score, qms_num, test_num, test_score, type
+    </sql>
+
+</mapper>

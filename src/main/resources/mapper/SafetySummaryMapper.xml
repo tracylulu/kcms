@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.SafetySummaryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.SafetySummaryDO">
+        <id column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="quarter" property="quarter" />
+        <result column="score" property="score" />
+        <result column="ccc_num" property="cccNum" />
+        <result column="cqc_num" property="cqcNum" />
+        <result column="ten_num" property="tenNum" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, account, quarter, score, ccc_num, cqc_num, ten_num
+    </sql>
+
+</mapper>

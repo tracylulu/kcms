@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.AddScoreAuditMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.AddScoreAuditDO">
+        <id column="id" property="id" />
+        <result column="user_account" property="userAccount" />
+        <result column="audit_account" property="auditAccount" />
+        <result column="add_score_id" property="addScoreId" />
+        <result column="score" property="score" />
+        <result column="status" property="status" />
+        <result column="copy_account" property="copyAccount" />
+        <result column="remark" property="remark" />
+        <result column="reply_date" property="replyDate" />
+        <result column="audit_date" property="auditDate" />
+        <result column="audit_status" property="auditStatus" />
+        <result column="quarter" property="quarter" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_account, audit_account, add_score_id, score, status, copy_account, remark, reply_date, audit_date, audit_status, quarter
+    </sql>
+
+	<select id="addScoreReplyList" parameterType="map" resultType="com.h3c.itrd.core.vo.AddScoreReplyListVO">
+        SELECT quarter,add_score_audit.remark as reason,add_score_select.name,add_score_audit.status,reply_date,audit_date,
+        add_score_audit.score,add_score_audit.id,add_score_audit.audit_status
+        FROM add_score_audit
+        JOIN add_score_select ON add_score_select.id = add_score_audit.add_score_id
+        where 1=1
+        <if test="param.account !=null and param.account !='' ">
+            and add_score_audit.user_account = #{param.account}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+            and add_score_audit.quarter = #{param.quarter}
+        </if>
+    </select>
+    
+    <select id="addScoreAuditListByStatus" parameterType="map" resultType="com.h3c.itrd.core.vo.AddScoreAuditListResVO">
+        SELECT add_score_audit.id,employee_list.name,add_score_select.name as select_name,add_score_audit.remark,audit_date,audit_status,
+        reply_date,add_score_select.A,add_score_select.B,add_score_select.C
+        FROM add_score_audit
+        JOIN add_score_select ON add_score_select.id = add_score_audit.add_score_id
+        JOIN employee_list ON employee_list.account = add_score_audit.user_account
+        where 1=1
+        <if test="param.account !=null and param.account !='' ">
+            and add_score_audit.audit_account = #{param.account}
+        </if>
+        <choose>
+            <when test="param.status !=null and param.status ==1 ">
+                and add_score_audit.status in (1,2)
+            </when>
+            <otherwise>
+                and add_score_audit.status = 0
+            </otherwise>
+        </choose>
+    </select>
+    
+    <select id="getAddScoreAuditById" parameterType="map" resultType="com.h3c.itrd.core.vo.AddScoreAuditResVO">
+        SELECT audit_status,A,B,C,add_score_select.score,add_score_select.name,
+        add_score_audit.quarter,add_score_audit.user_account
+        FROM add_score_audit
+        JOIN add_score_select ON add_score_select.id = add_score_audit.add_score_id
+        where 1=1
+        <if test="param.id !=null and param.id !='' ">
+            and add_score_audit.id = #{param.id}
+        </if>
+        
+    </select>
+    
+</mapper>

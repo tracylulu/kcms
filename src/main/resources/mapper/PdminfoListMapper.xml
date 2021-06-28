@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.PdminfoListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.PdminfoListDO">
+        <id column="id" property="id" />
+        <result column="archiveType" property="archiveType" />
+        <result column="H3PRODUCTLINE" property="h3productline" />
+        <result column="H3PRODUCT" property="h3product" />
+        <result column="PROJECTNAME" property="projectname" />
+        <result column="PDT" property="pdt" />
+        <result column="ACTUALRELDATE" property="actualreldate" />
+        <result column="PROJECTNAME1" property="projectname1" />
+        <result column="S1PASSEDTR" property="s1passedtr" />
+        <result column="H3PHYFILEREV" property="h3phyfilerev" />
+        <result column="boardNumAndDesc" property="boardNumAndDesc" />
+        <result column="H3PRINTEDCIRCUITNUM" property="h3printedcircuitnum" />
+        <result column="H3PRINTEDCIRCUITDESC" property="h3printedcircuitdesc" />
+        <result column="S1PARTSTATUS" property="s1partstatus" />
+        <result column="S1INTERNALMODEL" property="s1internalmodel" />
+        <result column="H3PCBLEVELNUM" property="h3pcblevelnum" />
+        <result column="archiveVersion" property="archiveVersion" />
+        <result column="respparty" property="respparty" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, archiveType, H3PRODUCTLINE, H3PRODUCT, PROJECTNAME, PDT, ACTUALRELDATE, PROJECTNAME1, S1PASSEDTR, H3PHYFILEREV, boardNumAndDesc, H3PRINTEDCIRCUITNUM, H3PRINTEDCIRCUITDESC, S1PARTSTATUS, S1INTERNALMODEL, H3PCBLEVELNUM, archiveVersion, respparty, sync_status, sync_time
+    </sql>
+
+</mapper>

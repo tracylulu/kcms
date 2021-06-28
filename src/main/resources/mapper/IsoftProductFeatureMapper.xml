@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.IsoftProductFeatureMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.IsoftProductFeatureDO">
+        <id column="id" property="id" />
+        <result column="project_name" property="projectName" />
+        <result column="business_group" property="businessGroup" />
+        <result column="feature_team" property="featureTeam" />
+        <result column="dev_person" property="devPerson" />
+        <result column="auto_audit_result" property="autoAuditResult" />
+        <result column="man_audit_result" property="manAuditResult" />
+        <result column="auto_audit_deduct" property="autoAuditDeduct" />
+        <result column="man_audit_deduct" property="manAuditDeduct" />
+        <result column="total_score" property="totalScore" />
+        <result column="audit_score" property="auditScore" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, project_name, business_group, feature_team, dev_person, auto_audit_result, man_audit_result, auto_audit_deduct, man_audit_deduct, total_score, audit_score, sync_time
+    </sql>
+    <sql id="Insert_Column_List">
+        project_name, business_group, feature_team, dev_person, auto_audit_result, man_audit_result, auto_audit_deduct, man_audit_deduct, total_score, audit_score, sync_time
+    </sql>
+    <delete id="deleteAllInfo">
+    delete from isoft_product_feature;
+    </delete>
+    <select id="selectCount" resultType="Integer">
+    select count(1) from isoft_product_feature;
+    </select>
+	<insert id="batchInsert" parameterType="list">
+		<foreach collection="list" item="item" index="index" open=""
+			close="" separator=";">
+			insert into isoft_product_feature(
+			<include refid="Insert_Column_List"></include>
+			)
+			values
+			(#{item.projectName},#{item.businessGroup},#{item.featureTeam},#{item.devPerson},#{item.autoAuditResult},#{item.manAuditResult},#{item.autoAuditDeduct},#{item.manAuditDeduct},#{item.totalScore},#{item.auditScore},#{item.syncTime})
+		</foreach>
+	</insert>
+
+</mapper>

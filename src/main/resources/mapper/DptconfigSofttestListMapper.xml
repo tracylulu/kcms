@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.DptconfigSofttestListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.DptconfigSofttestListDO">
+        <id column="id" property="id" />
+        <result column="dptcode" property="dptcode" />
+        <result column="idm_audit_1" property="idmAudit1" />
+        <result column="idm_di_1" property="idmDi1" />
+        <result column="idm_audit_2" property="idmAudit2" />
+        <result column="idm_di_2" property="idmDi2" />
+        <result column="idm_num_1" property="idmNum1" />
+        <result column="idm_num_2" property="idmNum2" />
+        <result column="point_num" property="pointNum" />
+        <result column="example_num" property="exampleNum" />
+        <result column="script_num" property="scriptNum" />
+        <result column="bug_syncprefix" property="bugSyncprefix" />
+        <result column="idm_huigui" property="idmHuigui" />
+        <result column="configtype" property="configtype" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, dptcode, idm_audit_1, idm_di_1, idm_audit_2, idm_di_2, idm_num_1, idm_num_2, point_num, example_num, script_num, bug_syncprefix, idm_huigui, configtype
+    </sql>
+
+</mapper>

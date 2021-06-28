@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.ProjectSummaryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.ProjectSummaryDO">
+        <id column="id" property="id" />
+        <result column="quarter" property="quarter" />
+        <result column="projectName" property="projectName" />
+        <result column="Scale" property="Scale" />
+        <result column="projectId" property="projectId" />
+        <result column="account" property="account" />
+        <result column="Sa" property="Sa" />
+        <result column="A_min" property="aMin" />
+        <result column="B_min" property="bMin" />
+        <result column="C_min" property="cMin" />
+        <result column="D_min" property="dMin" />
+        <result column="S1X" property="s1x" />
+        <result column="contributevalue" property="contributevalue" />
+        <result column="Sa_count" property="saCount" />
+        <result column="type" property="type" />
+        <result column="projectType" property="projectType" />
+        <result column="accountWork" property="accountWork" />
+        <result column="countDate" property="countDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, quarter, projectName, Scale, projectId, account, Sa, A_min, B_min, C_min, D_min, S1X, contributevalue, Sa_count, type, projectType, accountWork, countDate
+    </sql>
+
+	<select id="getSoftDevList" parameterType="map" resultType="com.h3c.itrd.core.vo.ProjectSummaryVO">
+        SELECT 
+        <!-- Sa as developcount,projectName as name,Scale as size,contributevalue as contribution,round(100*Sa/contributevalue,2) as score -->
+        COUNT(*) AS totalCount ,IFNULL(sum(round(Sa,2)), 0)  as totalScore,
+		IFNULL(SUM(A_min),0) AS totalAmin,IFNULL(SUM(B_min),0) AS totalBmin,IFNULL(SUM(C_min),0) AS totalCmin,IFNULL(SUM(D_min),0) AS totalDmin
+        FROM project_summary
+        where 1=1
+        <if test="param.account !=null and param.account !='' ">
+            and account = #{param.account}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+            and quarter = #{param.quarter}
+        </if>
+    </select>
+    
+    
+</mapper>

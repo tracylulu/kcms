@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.CbbinfoListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.CbbinfoListDO">
+        <id column="id" property="id" />
+        <result column="item_id" property="itemId" />
+        <result column="nh3c_DocumentSubType" property="nh3cDocumentsubtype" />
+        <result column="nh3c_DocumentDescription" property="nh3cDocumentdescription" />
+        <result column="nh3c_KeyComp" property="nh3cKeycomp" />
+        <result column="nh3c_ReasonArchAgain" property="nh3cReasonarchagain" />
+        <result column="nh3c_CbbLevel" property="nh3cCbblevel" />
+        <result column="nh3c_TechClass" property="nh3cTechclass" />
+        <result column="ActualRelDate" property="ActualRelDate" />
+        <result column="nh3c_CbbAuthor" property="nh3cCbbauthor" />
+        <result column="H3FirstLevelDept" property="H3FirstLevelDept" />
+        <result column="H3SecondLevelDept" property="H3SecondLevelDept" />
+        <result column="H3ThirdLevelDept" property="H3ThirdLevelDept" />
+        <result column="RespParty" property="RespParty" />
+        <result column="LifeCycleState" property="LifeCycleState" />
+        <result column="revision" property="revision" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, item_id, nh3c_DocumentSubType, nh3c_DocumentDescription, nh3c_KeyComp, nh3c_ReasonArchAgain, nh3c_CbbLevel, nh3c_TechClass, ActualRelDate, nh3c_CbbAuthor, H3FirstLevelDept, H3SecondLevelDept, H3ThirdLevelDept, RespParty, LifeCycleState, revision, sync_status, sync_time
+    </sql>
+
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.DepartmentConfigMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.DepartmentConfigDO">
+        <id column="dept1_code" property="dept1Code" />
+        <result column="dept1_name" property="dept1Name" />
+        <result column="dept2_code" property="dept2Code" />
+        <result column="dept2_name" property="dept2Name" />
+        <result column="modify_time" property="modifyTime" />
+        <result column="modifier" property="modifier" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        dept1_code, dept1_name, dept2_code, dept2_name, modify_time,modifier
+    </sql>
+    
+    <select id="selectDeptmentConfigInfo" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include> 
+    from department_config
+    </select>
+
+</mapper>

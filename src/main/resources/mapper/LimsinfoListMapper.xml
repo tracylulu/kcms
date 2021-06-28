@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.LimsinfoListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.LimsinfoListDO">
+        <id column="id" property="id" />
+        <result column="CreateTime" property="CreateTime" />
+        <result column="SnID" property="SnID" />
+        <result column="User" property="User" />
+        <result column="EntryType" property="EntryType" />
+        <result column="PDTName" property="PDTName" />
+        <result column="PDTSubName" property="PDTSubName" />
+        <result column="ProductType" property="ProductType" />
+        <result column="EUTNum" property="EUTNum" />
+        <result column="ConfigNum" property="ConfigNum" />
+        <result column="ExpType" property="ExpType" />
+        <result column="ExpTime" property="ExpTime" />
+        <result column="Status" property="Status" />
+        <result column="ExpEndTime" property="ExpEndTime" />
+        <result column="ExpDayQA" property="ExpDayQA" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, CreateTime, SnID, User, EntryType, PDTName, PDTSubName, ProductType, EUTNum, ConfigNum, ExpType, ExpTime, Status, ExpEndTime, ExpDayQA, sync_status, sync_time
+    </sql>
+
+</mapper>

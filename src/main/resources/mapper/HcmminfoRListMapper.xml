@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.HcmminfoRListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.HcmminfoRListDO">
+        <id column="id" property="id" />
+        <result column="FlowSerialNo" property="FlowSerialNo" />
+        <result column="FlowStatusName" property="FlowStatusName" />
+        <result column="PrintName" property="PrintName" />
+        <result column="PrintVersion" property="PrintVersion" />
+        <result column="ProductionLineName" property="ProductionLineName" />
+        <result column="PDTName" property="PDTName" />
+        <result column="ReleaseName" property="ReleaseName" />
+        <result column="BVersion" property="BVersion" />
+        <result column="plan_pla_check01" property="planPlaCheck01" />
+        <result column="plan_pla_check01Date" property="planPlaCheck01date" />
+        <result column="plan_pla_ext01" property="planPlaExt01" />
+        <result column="plan_pla_ext02" property="planPlaExt02" />
+        <result column="def_sum_pla_a03" property="defSumPlaA03" />
+        <result column="plan_pla_a01_Begin" property="planPlaA01Begin" />
+        <result column="pla_a01_Begin" property="plaA01Begin" />
+        <result column="plan_pla_a03_Begin" property="planPlaA03Begin" />
+        <result column="plan_pla_a03_End" property="planPlaA03End" />
+        <result column="pla_a03_Begin" property="plaA03Begin" />
+        <result column="pla_a03_End" property="plaA03End" />
+        <result column="plan_des_a01_Begin" property="planDesA01Begin" />
+        <result column="plan_des_a01_End" property="planDesA01End" />
+        <result column="plan_des_a05_Begin" property="planDesA05Begin" />
+        <result column="plan_des_a05_End" property="planDesA05End" />
+        <result column="plan_tes_a04_Begin" property="planTesA04Begin" />
+        <result column="plan_tes_a04_End" property="planTesA04End" />
+        <result column="plan_tes_a05_Begin" property="planTesA05Begin" />
+        <result column="plan_tes_a05_End" property="planTesA05End" />
+        <result column="design_des_check01" property="designDesCheck01" />
+        <result column="design_des_check01Date" property="designDesCheck01date" />
+        <result column="des_ext01" property="desExt01" />
+        <result column="des_ext02" property="desExt02" />
+        <result column="def_sum_des_a05" property="defSumDesA05" />
+        <result column="des_a01_Begin" property="desA01Begin" />
+        <result column="des_a01_End" property="desA01End" />
+        <result column="des_a05_Begin" property="desA05Begin" />
+        <result column="des_a05_End" property="desA05End" />
+        <result column="test_tes_check01" property="testTesCheck01" />
+        <result column="test_tes_check01Date" property="testTesCheck01date" />
+        <result column="tes_a04_Begin" property="tesA04Begin" />
+        <result column="tes_a04_End" property="tesA04End" />
+        <result column="tes_a05_Begin" property="tesA05Begin" />
+        <result column="tes_a05_End" property="tesA05End" />
+        <result column="def_sum_tes_a04" property="defSumTesA04" />
+        <result column="def_sum_tes_a05" property="defSumTesA05" />
+        <result column="def_sum_tes_a06" property="defSumTesA06" />
+        <result column="plan_pla_a02_Begin" property="planPlaA02Begin" />
+        <result column="plan_pla_a02_End" property="planPlaA02End" />
+        <result column="pla_a02_Begin" property="plaA02Begin" />
+        <result column="pla_a02_End" property="plaA02End" />
+        <result column="des_ext10" property="desExt10" />
+        <result column="des_ext11" property="desExt11" />
+        <result column="tes_ext04" property="tesExt04" />
+        <result column="unittest_Tester" property="unittestTester" />
+        <result column="unittest_TestProportion" property="unittestTestproportion" />
+        <result column="tes_ext05" property="tesExt05" />
+        <result column="hardwaretest_Tester" property="hardwaretestTester" />
+        <result column="hardwaretest_TestProportion" property="hardwaretestTestproportion" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, FlowSerialNo, FlowStatusName, PrintName, PrintVersion, ProductionLineName, PDTName, ReleaseName, BVersion, plan_pla_check01, plan_pla_check01Date, plan_pla_ext01, plan_pla_ext02, def_sum_pla_a03, plan_pla_a01_Begin, pla_a01_Begin, plan_pla_a03_Begin, plan_pla_a03_End, pla_a03_Begin, pla_a03_End, plan_des_a01_Begin, plan_des_a01_End, plan_des_a05_Begin, plan_des_a05_End, plan_tes_a04_Begin, plan_tes_a04_End, plan_tes_a05_Begin, plan_tes_a05_End, design_des_check01, design_des_check01Date, des_ext01, des_ext02, def_sum_des_a05, des_a01_Begin, des_a01_End, des_a05_Begin, des_a05_End, test_tes_check01, test_tes_check01Date, tes_a04_Begin, tes_a04_End, tes_a05_Begin, tes_a05_End, def_sum_tes_a04, def_sum_tes_a05, def_sum_tes_a06, plan_pla_a02_Begin, plan_pla_a02_End, pla_a02_Begin, pla_a02_End, des_ext10, des_ext11, tes_ext04, unittest_Tester, unittest_TestProportion, tes_ext05, hardwaretest_Tester, hardwaretest_TestProportion, sync_status, sync_time
+    </sql>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.DesignListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.DesignListDO">
+        <id column="id" property="id" />
+        <result column="type" property="type" />
+        <result column="account" property="account" />
+        <result column="num" property="num" />
+        <result column="quarter" property="quarter" />
+        <result column="score" property="score" />
+        <result column="time" property="time" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, type, account, num, quarter, score, time
+    </sql>
+
+</mapper>

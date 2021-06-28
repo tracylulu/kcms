@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.ExperienceinfoListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.ExperienceinfoListDO">
+        <id column="id" property="id" />
+        <result column="DocumentCode" property="DocumentCode" />
+        <result column="CaseName" property="CaseName" />
+        <result column="CaseAuthor" property="CaseAuthor" />
+        <result column="ChineseName" property="ChineseName" />
+        <result column="ApplicatEndTime" property="ApplicatEndTime" />
+        <result column="DepartmentLevel1" property="DepartmentLevel1" />
+        <result column="DepartmentLevel2" property="DepartmentLevel2" />
+        <result column="DepartmentLevel3" property="DepartmentLevel3" />
+        <result column="CaseValueEvaluation" property="CaseValueEvaluation" />
+        <result column="ApplicatTime" property="ApplicatTime" />
+        <result column="SummaryAndkeyword" property="SummaryAndkeyword" />
+        <result column="DcMainCategory" property="DcMainCategory" />
+        <result column="DcSubCategory" property="DcSubCategory" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, DocumentCode, CaseName, CaseAuthor, ChineseName, ApplicatEndTime, DepartmentLevel1, DepartmentLevel2, DepartmentLevel3, CaseValueEvaluation, ApplicatTime, SummaryAndkeyword, DcMainCategory, DcSubCategory, sync_status, sync_time
+    </sql>
+	<sql id="conditon_sql">
+		<trim suffixOverrides=",">
+			CaseName=#{item.CaseName},
+			CaseAuthor=#{item.CaseAuthor},
+			ChineseName=#{item.ChineseName},
+			ApplicatEndTime=#{item.ApplicatEndTime},
+			DepartmentLevel1=#{item.DepartmentLevel1},
+			DepartmentLevel2=#{item.DepartmentLevel2},
+			DepartmentLevel3=#{item.DepartmentLevel3},
+			CaseValueEvaluation=#{item.CaseValueEvaluation},
+			ApplicatTime=#{item.ApplicatTime},
+			SummaryAndkeyword=#{item.SummaryAndkeyword},
+			DcMainCategory=#{item.DcMainCategory},
+			DcSubCategory=#{item.DcSubCategory},
+			<if test="item.syncStatus !=null">
+				sync_status=#{item.syncStatus},
+			</if>
+			<if test="item.syncTime !=null">
+				sync_time=#{item.syncTime},
+			</if>
+		</trim>
+	</sql>
+	<update id="batchUpdateExperienceInfo" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			update experienceinfo_list set
+			<include refid="conditon_sql"></include>
+			where id IN (select experiencList.id from (
+			SELECT id from experienceinfo_list where
+			DocumentCode=#{item.DocumentCode}) experiencList)
+		</foreach>
+	</update>
+	<insert id="batchInsertExperienceInfo" parameterType="list">
+		<foreach collection="list" item="item" index="index" open=""
+			close="" separator=";">
+			insert into experienceinfo_list
+			(DocumentCode,
+			CaseName,
+			CaseAuthor,
+			ChineseName,
+			ApplicatEndTime,
+			DepartmentLevel1,
+			DepartmentLevel2,
+			DepartmentLevel3,
+			CaseValueEvaluation,
+			ApplicatTime,
+			SummaryAndkeyword,
+			DcMainCategory,
+			DcSubCategory,
+			sync_status,
+			sync_time)
+			select * from (select #{item.DocumentCode} as DocumentCode,
+			#{item.CaseName} as CaseName,
+			#{item.CaseAuthor} as CaseAuthor,
+			#{item.ChineseName} as ChineseName,
+			#{item.ApplicatEndTime} as ApplicatEndTime,
+			#{item.DepartmentLevel1} as DepartmentLevel1,
+			#{item.DepartmentLevel2} as DepartmentLevel2,
+			#{item.DepartmentLevel3} as DepartmentLevel3,
+			#{item.CaseValueEvaluation} as CaseValueEvaluation,
+			#{item.ApplicatTime} as ApplicatTime,
+			#{item.SummaryAndkeyword} as SummaryAndkeyword,
+			#{item.DcMainCategory} as DcMainCategory,
+			#{item.DcSubCategory} as DcSubCategory,
+			#{item.syncStatus} as sync_status,
+			#{item.syncTime} as sync_time) as tmp
+			where not exists (SELECT 1 FROM experienceinfo_list b WHERE
+			b.DocumentCode=#{item.DocumentCode})
+		</foreach>
+	</insert>
+
+</mapper>

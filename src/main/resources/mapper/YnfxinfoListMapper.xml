@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.YnfxinfoListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.YnfxinfoListDO">
+        <id column="id" property="id" />
+        <result column="PROBLEMNO" property="problemno" />
+        <result column="PRODUCTINFO" property="productinfo" />
+        <result column="PLIPMT" property="plipmt" />
+        <result column="STATUS" property="status" />
+        <result column="USERID_05" property="userid05" />
+        <result column="ENDTIME_05" property="endtime05" />
+        <result column="USERID_06B" property="userid06b" />
+        <result column="ENDTIME_06B" property="endtime06b" />
+        <result column="TOTALTIMES" property="totaltimes" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, PROBLEMNO, PRODUCTINFO, PLIPMT, STATUS, USERID_05, ENDTIME_05, USERID_06B, ENDTIME_06B, TOTALTIMES, sync_status, sync_time
+    </sql>
+
+</mapper>

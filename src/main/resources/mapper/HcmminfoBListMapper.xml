@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.HcmminfoBListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.HcmminfoBListDO">
+        <id column="id" property="id" />
+        <result column="FlowSerialNo" property="FlowSerialNo" />
+        <result column="FlowStatusName" property="FlowStatusName" />
+        <result column="PrintName" property="PrintName" />
+        <result column="PrintVersion" property="PrintVersion" />
+        <result column="BoardType" property="BoardType" />
+        <result column="ProductionLineName" property="ProductionLineName" />
+        <result column="PDTName" property="PDTName" />
+        <result column="ReleaseName" property="ReleaseName" />
+        <result column="BVersion" property="BVersion" />
+        <result column="plan_pla_check01" property="planPlaCheck01" />
+        <result column="plan_pla_check01Date" property="planPlaCheck01date" />
+        <result column="plan_pla_ext01" property="planPlaExt01" />
+        <result column="plan_pla_ext02" property="planPlaExt02" />
+        <result column="plan_req_a01_Begin" property="planReqA01Begin" />
+        <result column="plan_det_a08_End" property="planDetA08End" />
+        <result column="plan_det_a02_End" property="planDetA02End" />
+        <result column="plan_pcb_a01_Begin" property="planPcbA01Begin" />
+        <result column="plan_pcb_a01_End" property="planPcbA01End" />
+        <result column="plan_pcb_a02_Begin" property="planPcbA02Begin" />
+        <result column="plan_pcb_a02_End" property="planPcbA02End" />
+        <result column="plan_uni_a04_Begin" property="planUniA04Begin" />
+        <result column="plan_uni_a04_End" property="planUniA04End" />
+        <result column="plan_har_a01_Begin" property="planHarA01Begin" />
+        <result column="plan_har_a01_End" property="planHarA01End" />
+        <result column="requirement_req_check01" property="requirementReqCheck01" />
+        <result column="requirement_req_check01Date" property="requirementReqCheck01date" />
+        <result column="requirement_req_a01_Begin" property="requirementReqA01Begin" />
+        <result column="generaldesign_gen_check01" property="generaldesignGenCheck01" />
+        <result column="generaldesign_gen_check01Date" property="generaldesignGenCheck01date" />
+        <result column="gen_ext01" property="genExt01" />
+        <result column="gen_ext02" property="genExt02" />
+        <result column="detaileddesign_det_check01" property="detaileddesignDetCheck01" />
+        <result column="detaileddesign_det_check01Date" property="detaileddesignDetCheck01date" />
+        <result column="det_ext05" property="detExt05" />
+        <result column="det_ext07" property="detExt07" />
+        <result column="def_sum_det_a08" property="defSumDetA08" />
+        <result column="def_sum_det_a02" property="defSumDetA02" />
+        <result column="detaileddesign_det_a08_End" property="detaileddesignDetA08End" />
+        <result column="detaileddesign_det_a02_End" property="detaileddesignDetA02End" />
+        <result column="pcb_pcb_check01" property="pcbPcbCheck01" />
+        <result column="pcb_pcb_check01Date" property="pcbPcbCheck01date" />
+        <result column="pcb_ext01" property="pcbExt01" />
+        <result column="pcb_ext02" property="pcbExt02" />
+        <result column="PCBoardFrequency" property="PCBoardFrequency" />
+        <result column="pcb_pcb_a01_Begin" property="pcbPcbA01Begin" />
+        <result column="pcb_pcb_a02_End" property="pcbPcbA02End" />
+        <result column="unittest_uni_check01" property="unittestUniCheck01" />
+        <result column="unittest_uni_check01Date" property="unittestUniCheck01date" />
+        <result column="unittest_uni_a04_Begin" property="unittestUniA04Begin" />
+        <result column="unittest_uni_a04_End" property="unittestUniA04End" />
+        <result column="unittest_TestCoverage" property="unittestTestcoverage" />
+        <result column="unittest_Tester" property="unittestTester" />
+        <result column="unittest_TestProportion" property="unittestTestproportion" />
+        <result column="hardwaretest_har_check01" property="hardwaretestHarCheck01" />
+        <result column="hardwaretest_har_check01Date" property="hardwaretestHarCheck01date" />
+        <result column="hardwaretest_har_a01_Begin" property="hardwaretestHarA01Begin" />
+        <result column="hardwaretest_har_a01_End" property="hardwaretestHarA01End" />
+        <result column="hardwaretest_TestCasesSum" property="hardwaretestTestcasessum" />
+        <result column="hardwaretest_Tester" property="hardwaretestTester" />
+        <result column="hardwaretest_TestProportion" property="hardwaretestTestproportion" />
+        <result column="pcbDRR_Tester" property="pcbdrrTester" />
+        <result column="pcbDRR_TestProportion" property="pcbdrrTestproportion" />
+        <result column="plan_det_a07_Begin" property="planDetA07Begin" />
+        <result column="plan_det_a01_Begin" property="planDetA01Begin" />
+        <result column="detaileddesign_det_a07_Begin" property="detaileddesignDetA07Begin" />
+        <result column="detaileddesign_det_a01_Begin" property="detaileddesignDetA01Begin" />
+        <result column="detaileddesign_det_a02_Responsible" property="detaileddesignDetA02Responsible" />
+        <result column="pcb_pcb_a02_Begin" property="pcbPcbA02Begin" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, FlowSerialNo, FlowStatusName, PrintName, PrintVersion, BoardType, ProductionLineName, PDTName, ReleaseName, BVersion, plan_pla_check01, plan_pla_check01Date, plan_pla_ext01, plan_pla_ext02, plan_req_a01_Begin, plan_det_a08_End, plan_det_a02_End, plan_pcb_a01_Begin, plan_pcb_a01_End, plan_pcb_a02_Begin, plan_pcb_a02_End, plan_uni_a04_Begin, plan_uni_a04_End, plan_har_a01_Begin, plan_har_a01_End, requirement_req_check01, requirement_req_check01Date, requirement_req_a01_Begin, generaldesign_gen_check01, generaldesign_gen_check01Date, gen_ext01, gen_ext02, detaileddesign_det_check01, detaileddesign_det_check01Date, det_ext05, det_ext07, def_sum_det_a08, def_sum_det_a02, detaileddesign_det_a08_End, detaileddesign_det_a02_End, pcb_pcb_check01, pcb_pcb_check01Date, pcb_ext01, pcb_ext02, PCBoardFrequency, pcb_pcb_a01_Begin, pcb_pcb_a02_End, unittest_uni_check01, unittest_uni_check01Date, unittest_uni_a04_Begin, unittest_uni_a04_End, unittest_TestCoverage, unittest_Tester, unittest_TestProportion, hardwaretest_har_check01, hardwaretest_har_check01Date, hardwaretest_har_a01_Begin, hardwaretest_har_a01_End, hardwaretest_TestCasesSum, hardwaretest_Tester, hardwaretest_TestProportion, pcbDRR_Tester, pcbDRR_TestProportion, plan_det_a07_Begin, plan_det_a01_Begin, detaileddesign_det_a07_Begin, detaileddesign_det_a01_Begin, detaileddesign_det_a02_Responsible, pcb_pcb_a02_Begin, sync_status, sync_time
+    </sql>
+
+</mapper>

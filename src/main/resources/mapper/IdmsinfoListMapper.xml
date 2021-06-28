@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.IdmsinfoListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.IdmsinfoListDO">
+        <id column="DefectNO" property="DefectNO" />
+        <result column="Summery" property="Summery" />
+        <result column="ProjectID" property="ProjectID" />
+        <result column="DefectType" property="DefectType" />
+        <result column="ReportQuality" property="ReportQuality" />
+        <result column="CurrentPerson" property="CurrentPerson" />
+        <result column="CurrentNode" property="CurrentNode" />
+        <result column="PLIPMT" property="plipmt" />
+        <result column="PRODUCT" property="product" />
+        <result column="RELEASE1" property="release1" />
+        <result column="BASELINE" property="baseline" />
+        <result column="BASELINE_1" property="baseline1" />
+        <result column="TEAM" property="team" />
+        <result column="ODC_Age" property="odcAge" />
+        <result column="SubmitDate" property="SubmitDate" />
+        <result column="SubmitBy" property="SubmitBy" />
+        <result column="ODC_Severity" property="odcSeverity" />
+        <result column="Locationer" property="Locationer" />
+        <result column="Name_B" property="nameB" />
+        <result column="DefectModifiedTime" property="DefectModifiedTime" />
+        <result column="Name_C" property="nameC" />
+        <result column="ModifyAuthorizedBy" property="ModifyAuthorizedBy" />
+        <result column="ArchiveBy" property="ArchiveBy" />
+        <result column="BatchCopyFromNo" property="BatchCopyFromNo" />
+        <result column="SyNo" property="SyNo" />
+        <result column="CMOArchiveTime" property="CMOArchiveTime" />
+        <result column="TestArrangedTime" property="TestArrangedTime" />
+        <result column="TestBy" property="TestBy" />
+        <result column="TestTime" property="TestTime" />
+        <result column="TestNotPass" property="TestNotPass" />
+        <result column="TestApprover" property="TestApprover" />
+        <result column="TMApproveTime" property="TMApproveTime" />
+        <result column="DefectUrl" property="DefectUrl" />
+        <result column="IdmsType" property="IdmsType" />
+        <result column="ProjectSerialNum" property="ProjectSerialNum" />
+        <result column="isNew" property="isNew" />
+        <result column="UpdateDate" property="UpdateDate" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DefectNO, Summery, ProjectID, DefectType, ReportQuality, CurrentPerson, CurrentNode, PLIPMT, PRODUCT, RELEASE1, BASELINE, BASELINE_1, TEAM, ODC_Age, SubmitDate, SubmitBy, ODC_Severity, Locationer, Name_B, DefectModifiedTime, Name_C, ModifyAuthorizedBy, ArchiveBy, BatchCopyFromNo, SyNo, CMOArchiveTime, TestArrangedTime, TestBy, TestTime, TestNotPass, TestApprover, TMApproveTime, DefectUrl, IdmsType, ProjectSerialNum, isNew, UpdateDate, sync_status, sync_time
+    </sql>
+	<sql id="conditon_sql">
+		<trim suffixOverrides=",">
+			DefectType=#{item.DefectType},
+			ReportQuality=#{item.ReportQuality},
+			CurrentPerson=#{item.CurrentPerson},
+			CurrentNode=#{item.CurrentNode},
+			PLIPMT=#{item.plipmt},
+			PRODUCT=#{item.product},
+			RELEASE1=#{item.release1},
+			BASELINE=#{item.baseline},
+			BASELINE_1=#{item.baseline1},
+			TEAM=#{item.team},
+			ODC_Age=#{item.odcAge},
+			SubmitDate=#{item.SubmitDate},
+			SubmitBy=#{item.SubmitBy},
+			ODC_Severity=#{item.odcSeverity},
+			Locationer=#{item.Locationer},
+			Name_B=#{item.nameB},
+			DefectModifiedTime=#{item.DefectModifiedTime},
+			Name_C=#{item.nameC},
+			ModifyAuthorizedBy=#{item.ModifyAuthorizedBy},
+			ArchiveBy=#{item.ArchiveBy},
+			BatchCopyFromNo=#{item.BatchCopyFromNo},
+			SyNo=#{item.SyNo},
+			CMOArchiveTime=#{item.CMOArchiveTime},
+			TestArrangedTime=#{item.TestArrangedTime},
+			TestBy=#{item.TestBy},
+			TestTime=#{item.TestTime},
+			TestNotPass=#{item.TestNotPass},
+			TestApprover=#{item.TestApprover},
+			TMApproveTime=#{item.TMApproveTime},
+			DefectUrl=#{item.DefectUrl},
+			IdmsType=#{item.IdmsType},
+			<if test="item.syncStatus !=null">
+				sync_status=#{item.syncStatus},
+			</if>
+			<if test="item.syncTime !=null">
+				sync_time=#{item.syncTime},
+			</if>
+		</trim>
+	</sql>
+
+	<select id="getIdmsPT1" parameterType="map" resultType="com.h3c.itrd.core.vo.IdmsResVO">
+        SELECT DefectNO as num, DefectUrl as url,Summery as resume,CurrentNode as status,PRODUCT as product,ODC_Severity as severity,IdmsType as type,
+        BASELINE as baseline,BASELINE_1 as baseline1,Name_B as nameB,Name_C as nameC, '普通单提单' AS scoretype
+        FROM idmsinfo_list
+        WHERE IdmsType='普通单' and CurrentNode IN ('D版本归档','E组织测试','F回归测试','G问题确认','0关闭')
+        <if test="param.account !=null and param.account !='' ">
+            and SubmitBy = #{param.account}
+        </if>
+        <if test="param.start !=null and param.start !='' ">
+            AND DefectModifiedTime &gt;= #{param.start}
+        </if>
+        <if test="param.end !=null and param.end !='' ">
+            AND DefectModifiedTime &lt;= #{param.end}
+        </if>
+    </select>
+    <select id="getIdmsPT3" parameterType="map" resultType="com.h3c.itrd.core.vo.IdmsResVO">
+        SELECT DefectNO as num, DefectUrl as url,Summery as resume,CurrentNode as status,PRODUCT as product,ODC_Severity as severity,IdmsType as type,
+        BASELINE as baseline,BASELINE_1 as baseline1,Name_B as nameB,Name_C as nameC, '普通单定位' AS scoretype
+        FROM idmsinfo_list
+        WHERE IdmsType='普通单' and CurrentNode IN ('D版本归档','E组织测试','F回归测试','G问题确认','0关闭')
+        <if test="param.account !=null and param.account !='' ">
+            and Locationer = #{param.account}
+        </if>
+        <if test="param.start !=null and param.start !='' ">
+            AND DefectModifiedTime &gt;= #{param.start}
+        </if>
+        <if test="param.end !=null and param.end !='' ">
+            AND DefectModifiedTime &lt;= #{param.end}
+        </if>
+    </select>
+    <select id="getIdmsPT2" parameterType="map" resultType="com.h3c.itrd.core.vo.IdmsResVO">
+        SELECT DefectNO as num, DefectUrl as url,Summery as resume,CurrentNode as status,PRODUCT as product,ODC_Severity as severity,IdmsType as type,
+        BASELINE as baseline,BASELINE_1 as baseline1,Name_B as nameB,Name_C as nameC, '普通单修改' AS scoretype
+        FROM idmsinfo_list
+        WHERE IdmsType='普通单' and CurrentNode IN ('D版本归档','E组织测试','F回归测试','G问题确认','0关闭')
+        <if test="param.account !=null and param.account !='' ">
+            and Name_B = #{param.account}
+        </if>
+        <if test="param.start !=null and param.start !='' ">
+            AND DefectModifiedTime &gt;= #{param.start}
+        </if>
+        <if test="param.end !=null and param.end !='' ">
+            AND DefectModifiedTime &lt;= #{param.end}
+        </if>
+     </select>
+     <select id="getIdmsPT4" parameterType="map" resultType="com.h3c.itrd.core.vo.IdmsResVO">
+        SELECT DefectNO as num, DefectUrl as url,Summery as resume,CurrentNode as status,PRODUCT as product,ODC_Severity as severity,IdmsType as type,
+        BASELINE as baseline,BASELINE_1 as baseline1,Name_B as nameB,Name_C as nameC, '普通单审核' AS scoretype
+        FROM idmsinfo_list
+        WHERE IdmsType='普通单' and CurrentNode IN ('D版本归档','E组织测试','F回归测试','G问题确认','0关闭')
+        <if test="param.account !=null and param.account !='' ">
+            and Name_C = #{param.account}
+        </if>
+        <if test="param.start !=null and param.start !='' ">
+            AND DefectModifiedTime &gt;= #{param.start}
+        </if>
+        <if test="param.end !=null and param.end !='' ">
+            AND DefectModifiedTime &lt;= #{param.end}
+        </if>
+    </select>
+
+
+    <select id="getIdmsTB1" parameterType="map" resultType="com.h3c.itrd.core.vo.IdmsResVO">
+        SELECT DefectNO as num, DefectUrl as url,Summery as resume,CurrentNode as status,PRODUCT as product,ODC_Severity as severity,IdmsType as type,
+        BASELINE as baseline,BASELINE_1 as baseline1,Name_B as nameB,Name_C as nameC, '同步单修改' AS scoretype
+        FROM idmsinfo_list
+        WHERE IdmsType='同步单' and CurrentNode IN ('D版本归档','E组织测试','F回归测试','G问题确认','0关闭')
+        <if test="param.account !=null and param.account !='' ">
+            and Name_B = #{param.account}
+        </if>
+        <if test="param.start !=null and param.start !='' ">
+            AND DefectModifiedTime &gt;= #{param.start}
+        </if>
+        <if test="param.end !=null and param.end !='' ">
+            AND DefectModifiedTime &lt;= #{param.end}
+        </if>
+    </select>
+    <select id="getIdmsTB2" parameterType="map" resultType="com.h3c.itrd.core.vo.IdmsResVO">
+        SELECT DefectNO as num, DefectUrl as url,Summery as resume,CurrentNode as status,PRODUCT as product,ODC_Severity as severity,IdmsType as type,
+        BASELINE as baseline,BASELINE_1 as baseline1,Name_B as nameB,Name_C as nameC, '同步单审核' AS scoretype
+        FROM idmsinfo_list
+        WHERE IdmsType='同步单' and CurrentNode IN ('D版本归档','E组织测试','F回归测试','G问题确认','0关闭')
+        <if test="param.account !=null and param.account !='' ">
+            and Name_C = #{param.account}
+        </if>
+        <if test="param.start !=null and param.start !='' ">
+            AND DefectModifiedTime &gt;= #{param.start}
+        </if>
+        <if test="param.end !=null and param.end !='' ">
+            AND DefectModifiedTime &lt;= #{param.end}
+        </if>
+    </select>
+    <update id="batchUpdateDefectInfo" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			update idmsinfo_list set
+			<include refid="conditon_sql"></include>
+			where DefectNO=#{item.DefectNO}
+		</foreach>
+	</update>
+	<insert id="batchInsertDefectInfo" parameterType="list">
+		<foreach collection="list" item="item" index="index" open=""
+			close="" separator=";">
+			insert into idmsinfo_list
+			(DefectNO,
+			Summery,
+			ProjectID,
+			DefectType,
+			ReportQuality,
+			CurrentPerson,
+			CurrentNode,
+			PLIPMT,
+			PRODUCT,
+			RELEASE1,
+			BASELINE,
+			BASELINE_1,
+			TEAM,
+			ODC_Age,
+			SubmitDate,
+			SubmitBy,
+			ODC_Severity,
+			Locationer,
+			Name_B,
+			DefectModifiedTime,
+			Name_C,
+			ModifyAuthorizedBy,
+			ArchiveBy,
+			BatchCopyFromNo,
+			SyNo,
+			CMOArchiveTime,
+			TestArrangedTime,
+			TestBy,
+			TestTime,
+			TestNotPass,
+			TestApprover,
+			TMApproveTime,
+			DefectUrl,
+			IdmsType,
+			sync_time)
+			select * from (select #{item.DefectNO} as DefectNO,
+			#{item.Summery} as Summery,
+			#{item.ProjectID} as ProjectID,
+			#{item.DefectType} as DefectType,
+			#{item.ReportQuality} as ReportQuality,
+			#{item.CurrentPerson} as CurrentPerson,
+			#{item.CurrentNode} as CurrentNode,
+			#{item.plipmt} as PLIPMT,
+			#{item.product} as PRODUCT,
+			#{item.release1} as RELEASE1,
+			#{item.baseline} as BASELINE,
+			#{item.baseline1} as BASELINE_1,
+			#{item.team} as TEAM,
+			#{item.odcAge} as ODC_Age,
+			#{item.SubmitDate} as SubmitDate,
+			#{item.SubmitBy} as SubmitBy,
+			#{item.odcSeverity} as ODC_Severity,
+			#{item.Locationer} as Locationer,
+			#{item.nameB} as Name_B,
+			#{item.DefectModifiedTime} as DefectModifiedTime,
+			#{item.nameC} as Name_C,
+			#{item.ModifyAuthorizedBy} as ModifyAuthorizedBy,
+			#{item.ArchiveBy} as ArchiveBy,
+			#{item.BatchCopyFromNo} as BatchCopyFromNo,
+			#{item.SyNo} as SyNo,
+			#{item.CMOArchiveTime} as CMOArchiveTime,
+			#{item.TestArrangedTime} as TestArrangedTime,
+			#{item.TestBy} as TestBy,
+			#{item.TestTime} as TestTime,
+			#{item.TestNotPass} as TestNotPass,
+			#{item.TestApprover} as TestApprover,
+			#{item.TMApproveTime} as TMApproveTime,
+			#{item.DefectUrl} as DefectUrl,
+			#{item.IdmsType} as IdmsType,
+			#{item.syncTime} as sync_time) as tmp
+			where not exists (SELECT 1 FROM idmsinfo_list b WHERE
+			b.DefectNO=#{item.DefectNO})
+		</foreach>
+	</insert>
+</mapper>

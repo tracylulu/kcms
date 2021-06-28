@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.SpecinfoListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.SpecinfoListDO">
+        <id column="id" property="id" />
+        <result column="GDWJBH" property="gdwjbh" />
+        <result column="GFMC" property="gfmc" />
+        <result column="WF_ADDNAME" property="wfAddname" />
+        <result column="WF_DOCCREATED" property="wfDoccreated" />
+        <result column="GFFL" property="gffl" />
+        <result column="GDXZ" property="gdxz" />
+        <result column="GFJB" property="gfjb" />
+        <result column="ZLB1" property="zlb1" />
+        <result column="ZLB2" property="zlb2" />
+        <result column="FBTIME" property="fbtime" />
+        <result column="SSTIME" property="sstime" />
+        <result column="GFZYRY" property="gfzyry" />
+        <result column="GJC" property="gjc" />
+        <result column="DEPT1" property="dept1" />
+        <result column="SFFZ" property="sffz" />
+        <result column="GFBZSJ" property="gfbzsj" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, GDWJBH, GFMC, WF_ADDNAME, WF_DOCCREATED, GFFL, GDXZ, GFJB, ZLB1, ZLB2, FBTIME, SSTIME, GFZYRY, GJC, DEPT1, SFFZ, GFBZSJ, sync_status, sync_time
+    </sql>
+
+</mapper>

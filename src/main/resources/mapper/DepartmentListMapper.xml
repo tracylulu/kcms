@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.DepartmentListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.DepartmentListDO">
+        <id column="id" property="id" />
+        <result column="dptcode" property="dptcode" />
+        <result column="dptname" property="dptname" />
+        <result column="subdptcode" property="subdptcode" />
+        <result column="level" property="level" />
+        <result column="remark" property="remark" />
+        <result column="used" property="used" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+        <result property="sysModify" column="sys_modify"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, dptcode, dptname, subdptcode, level, remark, used, sync_status, sync_time, sys_modify 
+    </sql>
+
+	<select id="getListForAdmin"  resultType="com.h3c.itrd.core.vo.DepartmentListForAdminVO">
+        SELECT CONCAT_WS('-',department_list.dptname, a.dptname) AS name,a.dptcode as  code,department_list.dptname   FROM department_list
+		JOIN department_list as a ON department_list.dptcode = a.subdptcode
+		WHERE department_list.level= 1 and department_list.used= 1
+		UNION all
+		SELECT CONCAT_WS('-',department_list.dptname, a.dptname) AS name,a.dptcode as  code,department_list.dptname  FROM department_list
+		JOIN department_list as a ON department_list.dptcode = a.subdptcode
+		WHERE a.dptcode='50041224'
+    </select>
+
+	<insert id="batchInsertDeptInfo" parameterType="list">
+		<foreach collection="list" item="item" index="index" open=""
+			close="" separator=";">
+			insert into department_list(dptcode,dptname,subdptcode,level,remark,sync_time)
+			select * from (select #{item.dptcode} as dptcode, #{item.dptname} as dptname,#{item.subdptcode} as subdptcode,#{item.level} as level,#{item.remark} as remark,#{item.syncTime} as sync_time) as tmp
+			where not exists (select 1 from department_list b where b.dptcode=#{item.dptcode})
+		</foreach>
+	</insert>
+	
+	<update id="batchLogicDelDeptInfo" parameterType="list">
+		update department_list set remark =0,sync_time=now()
+		where dptcode not in
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<foreach collection="list" item="item" index="index" open=""
+				close="" separator=",">
+				#{item.dptcode}
+			</foreach>
+		</trim>
+		and sys_modify='0'
+	</update>
+
+	<update id="batchUpdateDeptInfo" parameterType="list">
+		<foreach collection="list" item="item" index="index" open=""
+			close="" separator=";">
+			update department_list set dptcode =
+			#{item.dptcode},dptname =#{item.dptname} ,subdptcode
+			=#{item.subdptcode},level = #{item.level},remark=#{item.remark} ,sync_time=#{item.syncTime}
+			where id in ( select departmentlist.id from (select id from
+			department_list where dptcode=#{item.dptcode} )departmentlist) and sys_modify='0'
+		</foreach>
+	</update>
+
+</mapper>

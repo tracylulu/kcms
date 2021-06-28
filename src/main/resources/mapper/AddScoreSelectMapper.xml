@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.AddScoreSelectMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.AddScoreSelectDO">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="score" property="score" />
+        <result column="A" property="a" />
+        <result column="B" property="b" />
+        <result column="C" property="c" />
+        <result column="seconddptcode" property="seconddptcode" />
+        <result column="thirddptcode" property="thirddptcode" />
+        <result column="status" property="status" />
+        <result column="thirddpt" property="thirddpt" />
+        <result column="seconddpt" property="seconddpt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, score, A, B, C, seconddptcode, thirddptcode, status, thirddpt, seconddpt
+    </sql>
+
+</mapper>

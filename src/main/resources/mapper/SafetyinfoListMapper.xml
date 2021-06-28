@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.SafetyinfoListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.SafetyinfoListDO">
+        <id column="id" property="id" />
+        <result column="WF_CURRENTNODENAME" property="wfCurrentnodename" />
+        <result column="INTRODUCTION" property="introduction" />
+        <result column="WF_ADDNAME" property="wfAddname" />
+        <result column="PRODLINE" property="prodline" />
+        <result column="PDT" property="pdt" />
+        <result column="RELEASE1" property="release1" />
+        <result column="WF_DOCNUMBER" property="wfDocnumber" />
+        <result column="CERTIFY_MODEL" property="certifyModel" />
+        <result column="CERTIFY_KIND" property="certifyKind" />
+        <result column="CERTIFY_TYPE" property="certifyType" />
+        <result column="PRODUCT_CODE" property="productCode" />
+        <result column="REPORT_NAME" property="reportName" />
+        <result column="SigningTime71" property="SigningTime71" />
+        <result column="SigningTime72" property="SigningTime72" />
+        <result column="SigningTime73" property="SigningTime73" />
+        <result column="SigningTime74" property="SigningTime74" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, WF_CURRENTNODENAME, INTRODUCTION, WF_ADDNAME, PRODLINE, PDT, RELEASE1, WF_DOCNUMBER, CERTIFY_MODEL, CERTIFY_KIND, CERTIFY_TYPE, PRODUCT_CODE, REPORT_NAME, SigningTime71, SigningTime72, SigningTime73, SigningTime74, sync_status, sync_time
+    </sql>
+
+</mapper>

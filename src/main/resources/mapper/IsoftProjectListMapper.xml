@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.IsoftProjectListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.IsoftProjectListDO">
+        <id column="id" property="id" />
+        <result column="projectId" property="projectId" />
+        <result column="projectName" property="projectName" />
+        <result column="proType" property="proType" />
+        <result column="ProPhase" property="ProPhase" />
+        <result column="ProQuaterWork" property="ProQuaterWork" />
+        <result column="seconddptcode" property="seconddptcode" />
+        <result column="currentdptcode" property="currentdptcode" />
+        <result column="state" property="state" />
+        <result column="PCBType" property="PCBType" />
+        <result column="PM" property="pm" />
+        <result column="TL" property="tl" />
+        <result column="Review" property="Review" />
+        <result column="Members" property="Members" />
+        <result column="PlanScale" property="PlanScale" />
+        <result column="ActualScale" property="ActualScale" />
+        <result column="PlanManHours" property="PlanManHours" />
+        <result column="FactManHours" property="FactManHours" />
+        <result column="PlanProRate" property="PlanProRate" />
+        <result column="FactProRate" property="FactProRate" />
+        <result column="PlanStartTime" property="PlanStartTime" />
+        <result column="StartTime" property="StartTime" />
+        <result column="PlanCheckEndTime" property="PlanCheckEndTime" />
+        <result column="CheckEndTime" property="CheckEndTime" />
+        <result column="PlanEndTime" property="PlanEndTime" />
+        <result column="EndTime" property="EndTime" />
+        <result column="CloseTime" property="CloseTime" />
+        <result column="FirstPauseTime" property="FirstPauseTime" />
+        <result column="FirstRecoverTime" property="FirstRecoverTime" />
+        <result column="SecondPauseTime" property="SecondPauseTime" />
+        <result column="SecondRecoverTime" property="SecondRecoverTime" />
+        <result column="ATDescription" property="ATDescription" />
+        <result column="ATEvaluation" property="ATEvaluation" />
+        <result column="ATDI" property="atdi" />
+        <result column="TotalDI" property="TotalDI" />
+        <result column="ScheduleForST" property="ScheduleForST" />
+        <result column="ScheduleForAll" property="ScheduleForAll" />
+        <result column="Ext1" property="Ext1" />
+        <result column="ContributeValue" property="ContributeValue" />
+        <result column="Difficult" property="Difficult" />
+        <result column="Url" property="Url" />
+        <result column="CAEvaluation" property="CAEvaluation" />
+        <result column="AuditScore" property="AuditScore" />
+        <result column="ResGroupName" property="ResGroupName" />
+        <result column="FourthOrg" property="FourthOrg" />
+        <result column="PlanNewScale" property="PlanNewScale" />
+        <result column="PlanMoveScale" property="PlanMoveScale" />
+        <result column="FactNewScale" property="FactNewScale" />
+        <result column="FactMoveScale" property="FactMoveScale" />
+        <result column="AppraiseID" property="AppraiseID" />
+        <result column="AppraiseEva" property="AppraiseEva" />
+        <result column="AppraisalProjectDI" property="AppraisalProjectDI" />
+        <result column="AppraiseDI" property="AppraiseDI" />
+        <result column="TC" property="tc" />
+        <result column="ProjectSerialNum" property="ProjectSerialNum" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, projectId, projectName, proType, ProPhase, ProQuaterWork, seconddptcode, currentdptcode, state, PCBType, PM, TL, Review, Members, PlanScale, ActualScale, PlanManHours, FactManHours, PlanProRate, FactProRate, PlanStartTime, StartTime, PlanCheckEndTime, CheckEndTime, PlanEndTime, EndTime, CloseTime, FirstPauseTime, FirstRecoverTime, SecondPauseTime, SecondRecoverTime, ATDescription, ATEvaluation, ATDI, TotalDI, ScheduleForST, ScheduleForAll, Ext1, ContributeValue, Difficult, Url, CAEvaluation, AuditScore, ResGroupName, FourthOrg, PlanNewScale, PlanMoveScale, FactNewScale, FactMoveScale, AppraiseID, AppraiseEva, AppraisalProjectDI, AppraiseDI, TC, ProjectSerialNum, sync_status, sync_time
+    </sql>
+    
+    <update id="batchEdit" parameterType="list">
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update isoft_project_list
+        <set>
+        <trim prefixOverrides=",">
+        <if test="item.AuditScore != null">
+        AuditScore=#{item.AuditScore},
+        </if>
+        <if test="item.AppraiseEva != null">
+        AppraiseEva=#{item.AppraiseEva},
+        </if>
+        <if test="item.syncTime != null">
+        sync_time=#{item.syncTime}
+        </if>
+        </trim>
+        </set>
+        where id IN (select projectList.id from (
+ 		SELECT id from isoft_project_list 
+ 		<where>
+ 		<trim prefixOverrides="and">
+        <if test="item.projectName != null">
+        and projectName=#{item.projectName}
+        </if>
+        <if test="item.FourthOrg != null">
+        and FourthOrg=#{item.FourthOrg}
+        </if>
+        <if test="item.AppraiseID != null">
+        and AppraiseID=#{item.AppraiseID}
+        </if>
+        </trim>
+        </where>
+        ) projectList)
+    </foreach> 
+    </update>
+    <update id="updateAuditScore">
+    update isoft_project_list a left join isoft_product_feature b on a.projectName=b.project_name and a.FourthOrg=b.feature_team
+     set a.AuditScore = b.audit_score,a.sync_time=now()
+    where b.project_name is not null and b.feature_team is not null
+    </update>
+    <update id="updateAppraiseEva">
+    update isoft_project_list a left join isoft_product_identification b on a.AppraiseID =b.appraise_id
+    set a.AppraiseEva = b.appraise_eva ,a.sync_time=now()
+    where b.appraise_id is not null
+    </update>
+
+</mapper>

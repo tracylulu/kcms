@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.DesignScoreMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.DesignScoreDO">
+        <id column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="quarter" property="quarter" />
+        <result column="total_score" property="totalScore" />
+        <result column="point_score" property="pointScore" />
+        <result column="example_score" property="exampleScore" />
+        <result column="script_score" property="scriptScore" />
+        <result column="point_num" property="pointNum" />
+        <result column="example_num" property="exampleNum" />
+        <result column="script_num" property="scriptNum" />
+        <result column="function_score" property="functionScore" />
+        <result column="function_num" property="functionNum" />
+        <result column="private_score" property="privateScore" />
+        <result column="privete_num" property="priveteNum" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, account, quarter, total_score, point_score, example_score, script_score, point_num, example_num, script_num, function_score, function_num, private_score, privete_num
+    </sql>
+
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.AddScoreMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.AddScoreDO">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="score" property="score" />
+        <result column="name" property="name" />
+        <result column="dptcode" property="dptcode" />
+        <result column="project" property="project" />
+        <result column="quarter" property="quarter" />
+        <result column="remark" property="remark" />
+        <result column="audit_time" property="auditTime" />
+        <result column="audit_id" property="auditId" />
+        <result column="insert_time" property="insertTime" />
+        <result column="insert_user_id" property="insertUserId" />
+        <result column="detail" property="detail" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, score, name, dptcode, project, quarter, remark, audit_time, audit_id, insert_time, insert_user_id, detail
+    </sql>
+
+
+	<select id="getAddScoreListByParam" parameterType="map" resultType="com.h3c.itrd.core.vo.AddScoreResVO">
+        SELECT sum(score) as score,project as scoreType,remark as description
+        FROM add_score
+        where 1=1
+        <if test="param.userId !=null and param.userId !='' ">
+            and user_id = #{param.userId}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+            and quarter = #{param.quarter}
+        </if>
+        group by project
+    </select>
+
+	<select id="getAddScoreDetailByParam" parameterType="map" resultType="com.h3c.itrd.core.vo.AddScoreResVO">
+        SELECT score,project as scoreType,remark as description
+        FROM add_score
+        where 1=1
+        <if test="param.userId !=null and param.userId !='' ">
+            and user_id = #{param.userId}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+            and quarter = #{param.quarter}
+        </if>
+    </select>
+    
+    <select id="getListForTotalScore" parameterType="map" resultType="com.h3c.itrd.core.vo.AddScoreResVO">
+        SELECT account,score
+        FROM add_score join employee_list ON employee_list.id=add_score.user_id
+        where 1=1
+        <if test="param.quarter !=null and param.quarter !='' ">
+            and quarter = #{param.quarter}
+        </if>
+    </select>
+    
+    
+</mapper>

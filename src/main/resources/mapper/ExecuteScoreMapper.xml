@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.ExecuteScoreMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.ExecuteScoreDO">
+        <id column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="quarter" property="quarter" />
+        <result column="total_score" property="totalScore" />
+        <result column="main_di" property="mainDi" />
+        <result column="project_di" property="projectDi" />
+        <result column="total_submit" property="totalSubmit" />
+        <result column="total_audit" property="totalAudit" />
+        <result column="sync_num" property="syncNum" />
+        <result column="main_num" property="mainNum" />
+        <result column="project_num" property="projectNum" />
+        <result column="huigui_num" property="huiguiNum" />
+        <result column="audit_score" property="auditScore" />
+        <result column="main_score" property="mainScore" />
+        <result column="project_score" property="projectScore" />
+        <result column="sync_score" property="syncScore" />
+        <result column="huigui_score" property="huiguiScore" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, account, quarter, total_score, main_di, project_di, total_submit, total_audit, sync_num, main_num, project_num, huigui_num, audit_score, main_score, project_score, sync_score, huigui_score
+    </sql>
+
+</mapper>

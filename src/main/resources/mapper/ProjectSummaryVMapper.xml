@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.ProjectSummaryVMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.ProjectSummaryVDO">
+        <id column="id" property="id" />
+        <result column="projectId" property="projectId" />
+        <result column="projectName" property="projectName" />
+        <result column="quarter" property="quarter" />
+        <result column="account" property="account" />
+        <result column="ProTotalWorkd" property="ProTotalWorkd" />
+        <result column="ProScored" property="ProScored" />
+        <result column="ContributeValued" property="ContributeValued" />
+        <result column="TotalScored" property="TotalScored" />
+        <result column="ContributeValue" property="ContributeValue" />
+        <result column="Sa_count" property="saCount" />
+        <result column="ProQuarWork" property="ProQuarWork" />
+        <result column="countDate" property="countDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, projectId, projectName, quarter, account, ProTotalWorkd, ProScored, ContributeValued, TotalScored, ContributeValue, Sa_count, ProQuarWork, countDate
+    </sql>
+
+</mapper>

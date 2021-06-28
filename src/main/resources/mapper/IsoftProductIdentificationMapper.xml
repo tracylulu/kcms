@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.IsoftProductIdentificationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.IsoftProductIdentificationDO">
+        <id column="id" property="id" />
+        <result column="create_date" property="createDate" />
+        <result column="pd_status" property="pdStatus" />
+        <result column="appraise_id" property="appraiseId" />
+        <result column="appraise" property="appraise" />
+        <result column="place" property="place" />
+        <result column="assembly" property="assembly" />
+        <result column="module" property="module" />
+        <result column="scale" property="scale" />
+        <result column="spot_check" property="spotCheck" />
+        <result column="dev_person" property="devPerson" />
+        <result column="ident_person" property="identPerson" />
+        <result column="di" property="di" />
+        <result column="di_eva" property="diEva" />
+        <result column="appraise_eva" property="appraiseEva" />
+        <result column="description" property="description" />
+        <result column="deadly" property="deadly" />
+        <result column="serious" property="serious" />
+        <result column="common" property="common" />
+        <result column="prompt" property="prompt" />
+        <result column="form" property="form" />
+        <result column="tag" property="tag" />
+        <result column="failed" property="failed" />
+        <result column="warning" property="warning" />
+        <result column="feature_team" property="featureTeam" />
+        <result column="density" property="density" />
+        <result column="be_component" property="beComponent" />
+        <result column="base" property="base" />
+        <result column="identify_days" property="identifyDays" />
+        <result column="Ext1" property="Ext1" />
+        <result column="other" property="other" />
+        <result column="v7_v9" property="v7V9" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, create_date, pd_status, appraise_id, appraise, place, assembly, module, scale, spot_check, dev_person, ident_person, di, di_eva, appraise_eva, description, deadly, serious, common, prompt, form, tag, failed, warning, feature_team, density, be_component, base, identify_days, Ext1, other, v7_v9, sync_time
+    </sql>
+    <sql id="Insert_Column_List">
+        create_date, pd_status, appraise_id, appraise, place, assembly, module, scale, spot_check, dev_person, ident_person, di, di_eva, appraise_eva, description, deadly, serious, common, prompt, form, tag, failed, warning, feature_team, density, be_component, base, identify_days, Ext1, other, v7_v9, sync_time
+    </sql>
+    <delete id="deleteAllInfo">
+    delete from isoft_product_identification;
+    </delete>
+    <select id="selectCount" resultType="Integer">
+    select count(1) from isoft_product_identification;
+    </select>
+	<insert id="batchInsert" parameterType="list">
+		<foreach collection="list" item="item" index="index" open=""
+			close="" separator=";">
+			insert into isoft_product_identification(
+			<include refid="Insert_Column_List"></include>
+			)
+			values
+			(#{item.createDate},#{item.pdStatus},#{item.appraiseId},#{item.appraise},#{item.place},#{item.assembly},#{item.module},#{item.scale},#{item.spotCheck},#{item.devPerson},#{item.identPerson},#{item.di},#{item.diEva},#{item.appraiseEva},#{item.description},
+			#{item.deadly},#{item.serious},#{item.common},#{item.prompt},#{item.form},#{item.tag},#{item.failed},#{item.warning},#{item.featureTeam},#{item.density},#{item.beComponent},#{item.base},#{item.identifyDays},#{item.Ext1},#{item.other},#{item.v7V9},#{item.syncTime})
+		</foreach>
+	</insert>
+
+</mapper>

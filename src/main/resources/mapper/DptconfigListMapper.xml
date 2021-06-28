@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.DptconfigListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.DptconfigListDO">
+        <id column="id" property="id" />
+        <result column="dptcode" property="dptcode" />
+        <result column="configtype" property="configtype" />
+        <result column="bug_validprefix" property="bugValidprefix" />
+        <result column="bug_invalidprefix" property="bugInvalidprefix" />
+        <result column="bug_validbaseline" property="bugValidbaseline" />
+        <result column="bug_syncprefix" property="bugSyncprefix" />
+        <result column="bug_asyncprefix" property="bugAsyncprefix" />
+        <result column="bug_normal_SubmitCNTprefix" property="bugNormalSubmitcntprefix" />
+        <result column="bug_normal_SubmitDIprefix" property="bugNormalSubmitdiprefix" />
+        <result column="bug_normal_LocationCNTprefix" property="bugNormalLocationcntprefix" />
+        <result column="bug_normal_LocationDIprefix" property="bugNormalLocationdiprefix" />
+        <result column="bug_normal_ModifyCNTprefix" property="bugNormalModifycntprefix" />
+        <result column="bug_normal_ReviewCNTprefix" property="bugNormalReviewcntprefix" />
+        <result column="bug_sync_ModifyCNTprefix" property="bugSyncModifycntprefix" />
+        <result column="bug_sync_ReviewCNTprefix" property="bugSyncReviewcntprefix" />
+        <result column="review_DIprefix" property="reviewDiprefix" />
+        <result column="review_CNTprefix" property="reviewCntprefix" />
+        <result column="prj_basecode" property="prjBasecode" />
+        <result column="prj_devscaleprefix1" property="prjDevscaleprefix1" />
+        <result column="prj_devscaleprefix2" property="prjDevscaleprefix2" />
+        <result column="prj_ATprefix" property="prjAtprefix" />
+        <result column="prj_ATaverageQuarter" property="prjAtaveragequarter" />
+        <result column="prj_Scheduleprefix" property="prjScheduleprefix" />
+        <result column="prj_CodeAuthprefix" property="prjCodeauthprefix" />
+        <result column="prj_Auditprefix" property="prjAuditprefix" />
+        <result column="v_pro_work" property="vProWork" />
+        <result column="v_systestDI_a" property="vSystestdiA" />
+        <result column="v_subQuestDI" property="vSubquestdi" />
+        <result column="v_solveQuestDI" property="vSolvequestdi" />
+        <result column="v_checktestDI_b" property="vChecktestdiB" />
+        <result column="prj_ATDIprefix" property="prjAtdiprefix" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, dptcode, configtype, bug_validprefix, bug_invalidprefix, bug_validbaseline, bug_syncprefix, bug_asyncprefix, bug_normal_SubmitCNTprefix, bug_normal_SubmitDIprefix, bug_normal_LocationCNTprefix, bug_normal_LocationDIprefix, bug_normal_ModifyCNTprefix, bug_normal_ReviewCNTprefix, bug_sync_ModifyCNTprefix, bug_sync_ReviewCNTprefix, review_DIprefix, review_CNTprefix, prj_basecode, prj_devscaleprefix1, prj_devscaleprefix2, prj_ATprefix, prj_ATaverageQuarter, prj_Scheduleprefix, prj_CodeAuthprefix, prj_Auditprefix, v_pro_work, v_systestDI_a, v_subQuestDI, v_solveQuestDI, v_checktestDI_b, prj_ATDIprefix
+    </sql>
+
+</mapper>

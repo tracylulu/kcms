@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.HardwareTestScriptMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.HardwareTestScriptDO">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="tool_name" property="toolName" />
+        <result column="klog" property="klog" />
+        <result column="score" property="score" />
+        <result column="quarter" property="quarter" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, tool_name, klog, score, quarter
+    </sql>
+
+</mapper>

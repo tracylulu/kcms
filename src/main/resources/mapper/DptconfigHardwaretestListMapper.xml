@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.DptconfigHardwaretestListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.DptconfigHardwaretestListDO">
+        <id column="id" property="id" />
+        <result column="dptname" property="dptname" />
+        <result column="dptcode" property="dptcode" />
+        <result column="idm_submit_a" property="idmSubmitA" />
+        <result column="idm_location_a" property="idmLocationA" />
+        <result column="idm_edit_a" property="idmEditA" />
+        <result column="idm_notpass" property="idmNotpass" />
+        <result column="idm_submit_b" property="idmSubmitB" />
+        <result column="idm_submit_c" property="idmSubmitC" />
+        <result column="idm_location_b" property="idmLocationB" />
+        <result column="idm_location_c" property="idmLocationC" />
+        <result column="idm_edit_b" property="idmEditB" />
+        <result column="idm_edit_c" property="idmEditC" />
+        <result column="hcmm_cd" property="hcmmCd" />
+        <result column="hcmm_cu" property="hcmmCu" />
+        <result column="analyze_basic" property="analyzeBasic" />
+        <result column="analyze_A" property="analyzeA" />
+        <result column="analyze_B" property="analyzeB" />
+        <result column="analyze_C" property="analyzeC" />
+        <result column="analyze_D" property="analyzeD" />
+        <result column="qms_basic" property="qmsBasic" />
+        <result column="qms_varyhard" property="qmsVaryhard" />
+        <result column="qms_hard" property="qmsHard" />
+        <result column="qms_normal" property="qmsNormal" />
+        <result column="qms_tip" property="qmsTip" />
+        <result column="review_basic" property="reviewBasic" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, dptname, dptcode, idm_submit_a, idm_location_a, idm_edit_a, idm_notpass, idm_submit_b, idm_submit_c, idm_location_b, idm_location_c, idm_edit_b, idm_edit_c, hcmm_cd, hcmm_cu, analyze_basic, analyze_A, analyze_B, analyze_C, analyze_D, qms_basic, qms_varyhard, qms_hard, qms_normal, qms_tip, review_basic
+    </sql>
+
+</mapper>

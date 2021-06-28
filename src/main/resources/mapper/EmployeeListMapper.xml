@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.EmployeeListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.EmployeeListDO">
+        <id column="id" property="id" />
+        <result column="domainid" property="domainid" />
+        <result column="account" property="account" />
+        <result column="name" property="name" />
+        <result column="type" property="type" />
+        <result column="firstdptcode" property="firstdptcode" />
+        <result column="firstdpt" property="firstdpt" />
+        <result column="seconddptcode" property="seconddptcode" />
+        <result column="seconddpt" property="seconddpt" />
+        <result column="thirddptcode" property="thirddptcode" />
+        <result column="thirddpt" property="thirddpt" />
+        <result column="currentdptcode" property="currentdptcode" />
+        <result column="currentdpt" property="currentdpt" />
+        <result column="fivedpt" property="fivedpt" />
+        <result column="fivedptcode" property="fivedptcode" />
+        <result column="position" property="position" />
+        <result column="entryDate" property="entryDate" />
+        <result column="positiontype" property="positiontype" />
+        <result column="positionname" property="positionname" />
+        <result column="positionlevel" property="positionlevel" />
+        <result column="postName1" property="postName1" />
+        <result column="postName2" property="postName2" />
+        <result column="postName3" property="postName3" />
+        <result column="postType" property="postType" />
+        <result column="special" property="special" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+        <result property="sysModify" column="sys_modify"/>
+        <result property="sysDept4Code" column="sys_dept4_code"/>
+        <result property="sysDept4Name" column="sys_dept4_name"/>
+        <result property="sysCity" column="sys_city"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, domainid, account, name, type, firstdptcode, firstdpt, seconddptcode, seconddpt, thirddptcode, thirddpt, currentdptcode, currentdpt, fivedpt, fivedptcode, position, entryDate, positiontype, positionname, positionlevel, postName1, postName2, postName3, postType, special, sync_status, sync_time, sys_modify, sys_dept4_code, sys_dept4_name, sys_city
+    </sql>
+    
+    <insert id="batchInsertEmployeeInfo" parameterType="list">
+	<foreach collection="list" item="item" index="index" open=""
+		close="" separator=";">
+		insert into
+		employee_list(id,domainid,account,name,type,firstdptcode,firstdpt,
+		seconddptcode , seconddpt , thirddptcode , thirddpt , currentdptcode ,
+		currentdpt , position , entryDate , positiontype , positionname ,
+		postName1 , postName2 , postName3 , postType , sync_time , sys_dept4_code , sys_dept4_name , sys_city)
+		select * from (select #{item.id} as id, #{item.domainid} as domainid,#{item.account}
+		as account,#{item.name} as name,#{item.type} as
+		type,#{item.firstdptcode} as firstdptcode,#{item.firstdpt} as
+		firstdpt,#{item.seconddptcode} as seconddptcode,#{item.seconddpt} as
+		seconddpt,#{item.thirddptcode} as thirddptcode,#{item.thirddpt} as
+		thirddpt,#{item.currentdptcode} as currentdptcode,#{item.currentdpt}
+		as currentdpt,#{item.position} as position,#{item.entryDate} as
+		entryDate,#{item.positiontype} as positiontype,#{item.positionname} as
+		positionname,#{item.postName1} as postName1,#{item.postName2} as
+		postName2,#{item.postName3} as postName3, #{item.postType} as postType, #{item.syncTime} as sync_time,
+		#{item.sysDept4Code} as sys_dept4_code,#{item.sysDept4Name} as sys_dept4_name,
+		#{item.sysCity} as sys_city) as tmp
+		where not exists (select 1 from employee_list b where
+		b.id=#{item.id})
+	</foreach>
+</insert>
+
+	<update id="batchUpdateEmployeeInfoForSys" parameterType="list">
+		<foreach collection="list" item="item" index="index" open=""
+			close="" separator=";">
+			update employee_list set domainid
+			=#{item.domainid}, account =#{item.account}, name =#{item.name}, type
+			=#{item.type},
+			firstdptcode =#{item.firstdptcode}, firstdpt =#{item.firstdpt},
+			seconddptcode =#{item.seconddptcode}, seconddpt =#{item.seconddpt}, thirddptcode
+			=#{item.thirddptcode}, thirddpt =#{item.thirddpt},
+			position =#{item.position}, entryDate =#{item.entryDate},
+			positiontype =#{item.positiontype}, positionname =#{item.positionname}, postName1
+			=#{item.postName1}, postName2 =#{item.postName2}, postName3
+			=#{item.postName3},postType =#{item.postType}, sync_time=#{item.syncTime}
+			where id in ( select
+			employeelist.id from (select id from
+			employee_list where id=#{item.id}
+			)employeelist) and sys_modify='1'
+		</foreach>
+	</update>
+	
+	<update id="batchUpdateEmployeeInfo" parameterType="list">
+		<foreach collection="list" item="item" index="index" open=""
+			close="" separator=";">
+			update employee_list set domainid
+			=#{item.domainid}, account =#{item.account}, name =#{item.name}, type
+			=#{item.type},
+			firstdptcode =#{item.firstdptcode}, firstdpt =#{item.firstdpt},
+			seconddptcode =#{item.seconddptcode}, seconddpt =#{item.seconddpt}, thirddptcode
+			=#{item.thirddptcode}, thirddpt =#{item.thirddpt},
+			position =#{item.position}, entryDate =#{item.entryDate},
+			positiontype =#{item.positiontype}, positionname =#{item.positionname}, postName1
+			=#{item.postName1}, postName2 =#{item.postName2}, postName3
+			=#{item.postName3},postType =#{item.postType},sync_time=#{item.syncTime},sys_dept4_code=#{item.sysDept4Code},sys_dept4_name=#{item.sysDept4Name},sys_city=#{item.sysCity}
+			where id in ( select
+			employeelist.id from (select id from
+			employee_list where id=#{item.id}
+			)employeelist) and sys_modify='0'
+		</foreach>
+	</update>
+	
+	<delete id="deleteAllSyncEmployeeInfo">
+	delete from employee_list where sys_modify='0'
+	</delete>
+
+</mapper>

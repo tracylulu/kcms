@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.PostTypeConstantMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.PostTypeConstantDO">
+        <id column="id" property="id" />
+        <result column="post_name1" property="postName1" />
+        <result column="postion_type" property="postionType" />
+        <result column="postion_name" property="postionName" />
+        <result column="post_name3" property="postName3" />
+        <result column="post_name2" property="postName2" />
+        <result column="post_type" property="postType" />
+        <result column="delete_flag" property="deleteFlag" />
+        <result column="creator" property="creator" />
+        <result column="create_time" property="createTime" />
+        <result column="modifier" property="modifier" />
+        <result column="modifi_time" property="modifiTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, post_name1, postion_type, postion_name, post_name3, post_name2, post_type, delete_flag, creator, create_time, modifier, modifi_time
+    </sql>
+
+</mapper>

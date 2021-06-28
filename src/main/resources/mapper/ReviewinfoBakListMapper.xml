@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.ReviewinfoBakListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.ReviewinfoBakListDO">
+        <result column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="reviewid" property="reviewid" />
+        <result column="totaltime" property="totaltime" />
+        <result column="criticalnum" property="criticalnum" />
+        <result column="ordinarynum" property="ordinarynum" />
+        <result column="tipnum" property="tipnum" />
+        <result column="totalnum" property="totalnum" />
+        <result column="totaldi" property="totaldi" />
+        <result column="finishdate" property="finishdate" />
+        <result column="reviewurl" property="reviewurl" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, account, reviewid, totaltime, criticalnum, ordinarynum, tipnum, totalnum, totaldi, finishdate, reviewurl
+    </sql>
+
+</mapper>

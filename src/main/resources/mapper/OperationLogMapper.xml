@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.OperationLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.OperationLogDO">
+        <id column="id" property="id" />
+        <result column="model_code" property="modelCode" />
+        <result column="model_name" property="modelName" />
+        <result column="summary" property="summary" />
+        <result column="content" property="content" />
+        <result column="user_id" property="userId" />
+        <result column="ip" property="ip" />
+        <result column="log_time" property="logTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, model_code, model_name, summary, content, user_id, ip, log_time
+    </sql>
+    <insert id="insertLog" parameterType="com.h3c.itrd.core.entity.OperationLogDO">
+    insert into operation_log(model_code,model_name,summary,content,user_id,ip,log_time) 
+    values(#{param.modelCode},#{param.modelName},#{param.summary},#{param.content},#{param.userId},#{param.ip},#{param.logTime})
+    </insert>
+
+</mapper>

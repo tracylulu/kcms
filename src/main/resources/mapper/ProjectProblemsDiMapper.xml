@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.ProjectProblemsDiMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.ProjectProblemsDiDO">
+        <id column="id" property="id" />
+        <result column="ProjectSerialNum" property="ProjectSerialNum" />
+        <result column="projectId" property="projectId" />
+        <result column="projectName" property="projectName" />
+        <result column="account" property="account" />
+        <result column="SubQuestDI" property="SubQuestDI" />
+        <result column="SolveQuestDI" property="SolveQuestDI" />
+        <result column="CheckSolveQDI" property="CheckSolveQDI" />
+        <result column="ProQuestDI" property="ProQuestDI" />
+        <result column="ProCheckDI" property="ProCheckDI" />
+        <result column="countDate" property="countDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, ProjectSerialNum, projectId, projectName, account, SubQuestDI, SolveQuestDI, CheckSolveQDI, ProQuestDI, ProCheckDI, countDate
+    </sql>
+
+</mapper>

@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.QuarterScoreMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.QuarterScoreDO">
+        <id column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="quarter" property="quarter" />
+        <result column="total_score" property="totalScore" />
+        <result column="review_score" property="reviewScore" />
+        <result column="maintain_score" property="maintainScore" />
+        <result column="develop_score" property="developScore" />
+        <result column="add_score" property="addScore" />
+        <result column="platform_score" property="platformScore" />
+        <result column="type" property="type" />
+        <result column="charge_score" property="chargeScore" />
+        <result column="update_time" property="updateTime" />
+        <result column="firstdptcode" property="firstdptcode" />
+        <result column="seconddptcode" property="seconddptcode" />
+        <result column="thirddptcode" property="thirddptcode" />
+        <result column="currentdptcode" property="currentdptcode" />
+        <result column="fivedptcode" property="fivedptcode" />
+        <result column="firstdpt" property="firstdpt" />
+        <result column="seconddpt" property="seconddpt" />
+        <result column="thirddpt" property="thirddpt" />
+        <result column="currentdpt" property="currentdpt" />
+        <result column="fivedpt" property="fivedpt" />
+        <result column="special" property="special" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, account, quarter, total_score, review_score, maintain_score, develop_score, add_score, platform_score, type, charge_score, update_time, firstdptcode, seconddptcode, thirddptcode, currentdptcode, fivedptcode, firstdpt, seconddpt, thirddpt, currentdpt, fivedpt, special
+    </sql>
+
+	<select id="getOverviewList" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.OverviewResVO">
+        SELECT  employee_list.position as city,employee_list.name,employee_list.id,employee_list.seconddpt as level2,employee_list.thirddpt as level3,
+        employee_list.currentdpt as level4,postType as careerLevel,quarter,total_score as total,develop_score as develop,maintain_score as maintain,
+        review_score as review,add_score as additional,platform_score as platform
+        FROM quarter_score JOIN employee_list ON quarter_score.account = employee_list.account
+        where 1=1
+        <if test="param.account !=null and param.account !='' ">
+            and employee_list.account = #{param.account}
+        </if>
+        and quarter_score.quarter in
+        <foreach collection="param.quarter" item="code" index="index"
+                 open="(" close=")" separator=",">
+            #{code}
+        </foreach>
+		ORDER BY quarter_score.quarter desc
+    </select>
+
+    <select id="getRankForTotal" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.RankResVO">
+        SELECT employee_list.account,quarter_score.type,total_score AS score
+        FROM quarter_score JOIN employee_list ON quarter_score.account = employee_list.account
+        WHERE 1=1
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and employee_list.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+            and quarter = #{param.quarter}
+        </if>
+        ORDER BY total_score desc
+    </select>
+    <select id="getRankForDev" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.RankResVO">
+        SELECT employee_list.account,quarter_score.type,develop_score AS score
+        FROM quarter_score JOIN employee_list ON quarter_score.account = employee_list.account
+        WHERE 1=1
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and employee_list.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+            and quarter = #{param.quarter}
+        </if>
+        ORDER BY develop_score desc
+    </select>
+    <select id="getRankForMaintain" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.RankResVO">
+        SELECT employee_list.account,quarter_score.type,maintain_score AS score
+        FROM quarter_score JOIN employee_list ON quarter_score.account = employee_list.account
+        WHERE 1=1
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and employee_list.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+            and quarter = #{param.quarter}
+        </if>
+        ORDER BY maintain_score desc
+    </select>
+    <select id="getRankForAudit" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.RankResVO">
+        SELECT employee_list.account,quarter_score.type,review_score AS score
+        FROM quarter_score JOIN employee_list ON quarter_score.account = employee_list.account
+        WHERE 1=1
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and employee_list.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+            and quarter = #{param.quarter}
+        </if>
+        ORDER BY review_score desc
+    </select>
+    <select id="getRankForAdd" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.RankResVO">
+        SELECT employee_list.account,quarter_score.type,add_score AS score
+        FROM quarter_score JOIN employee_list ON quarter_score.account = employee_list.account
+        WHERE 1=1
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and employee_list.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+            and quarter = #{param.quarter}
+        </if>
+        ORDER BY add_score desc
+    </select>
+    <select id="getRankForPlat" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.RankResVO">
+        SELECT employee_list.account,quarter_score.type,platform_score AS score
+        FROM quarter_score JOIN employee_list ON quarter_score.account = employee_list.account
+        WHERE 1=1
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and employee_list.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+            and quarter = #{param.quarter}
+        </if>
+        ORDER BY platform_score desc
+    </select>
+
+    <select id="getRankList" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.RankListResVO">
+        SELECT  employee_list.id,total_score,employee_list.name
+        FROM quarter_score
+        JOIN employee_list ON quarter_score.account = employee_list.account
+        where 1=1
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and employee_list.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+            and quarter_score.quarter = #{param.quarter}
+        </if>
+        order by total_score desc limit 1
+    </select>
+    
+    <!--团队得分模块相关方法  -->
+    <select id="getListForNoSpecial3" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.DepartmentListResVO">
+        SELECT  round(sum(total_score)/count(employee_list.id),2) as totalScore,
+             round(sum(review_score)/count(employee_list.id),2) as reviewScore,
+             round(sum(maintain_score)/count(employee_list.id),2) as maintainScore,
+             round(sum(develop_score)/count(employee_list.id),2) as developScore,
+             round(sum(add_score)/count(employee_list.id),2) as addScore,
+             round(sum(platform_score)/count(employee_list.id),2) as platformScore,
+             quarter_score.thirddpt as currentdpt,position as city,
+             count(employee_list.id) as member
+        from quarter_score
+        left join employee_list ON quarter_score.account = employee_list.account
+        where 1=1 
+        <if test="param.special !=null and param.special !='' ">
+            and quarter_score.special = #{param.special}
+        </if>
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and quarter_score.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.position !=null and param.position !='' ">
+            and employee_list.position = #{param.position}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+	        and quarter_score.quarter = #{param.quarter}
+		</if>
+		<if test="param.thirddptcode !=null and param.thirddptcode !='' ">
+	        and quarter_score.thirddptcode in
+			<foreach collection="param.thirddptcode" item="code" index="index"
+				open="(" close=")" separator=",">
+				#{code}
+			</foreach>
+		</if>
+		<if test="param.currentdptcode !=null and param.currentdptcode !='' ">
+	        and quarter_score.currentdptcode in
+			<foreach collection="param.currentdptcode" item="code" index="index"
+				open="(" close=")" separator=",">
+				#{code}
+			</foreach>
+		</if>
+        group by quarter_score.thirddptcode
+    </select>
+    
+    <select id="getListForSpecial3" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.DepartmentListResVO">
+        SELECT  quarter_score.thirddpt as currentdpt,count(employee_list.id) as member
+        from quarter_score
+        left join employee_list ON quarter_score.account = employee_list.account
+        where 1=1 and quarter_score.special=0
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and quarter_score.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.position !=null and param.position !='' ">
+            and employee_list.position = #{param.position}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+	        and quarter_score.quarter = #{param.quarter}
+		</if>
+		<if test="param.thirddptcode !=null and param.thirddptcode !='' ">
+	        and quarter_score.thirddptcode in
+			<foreach collection="param.thirddptcode" item="code" index="index"
+				open="(" close=")" separator=",">
+				#{code}
+			</foreach>
+		</if>
+		<if test="param.currentdptcode !=null and param.currentdptcode !='' ">
+	        and quarter_score.currentdptcode in
+			<foreach collection="param.currentdptcode" item="code" index="index"
+				open="(" close=")" separator=",">
+				#{code}
+			</foreach>
+		</if>
+        group by quarter_score.thirddptcode
+    </select>
+    
+    <select id="getRankListFor3" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.DepartmentListResVO">
+        SELECT  round(sum(total_score)/count(employee_list.id),2) as totalScore,
+             round(sum(review_score)/count(employee_list.id),2) as reviewScore,
+             round(sum(maintain_score)/count(employee_list.id),2) as maintainScore,
+             round(sum(develop_score)/count(employee_list.id),2) as developScore,
+             round(sum(add_score)/count(employee_list.id),2) as addScore,
+             round(sum(platform_score)/count(employee_list.id),2) as platformScore,
+             quarter_score.thirddpt as currentdpt,position as city
+        from quarter_score
+        left join employee_list ON quarter_score.account = employee_list.account
+        where 1=1 
+        <if test="param.special !=null and param.special !='' ">
+            and quarter_score.special = #{param.special}
+        </if>
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and quarter_score.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.position !=null and param.position !='' ">
+            and employee_list.position = #{param.position}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+	        and quarter_score.quarter = #{param.quarter}
+		</if>
+        group by quarter_score.thirddptcode
+        order by sum(total_score)/count(employee_list.id) desc
+    </select>
+    
+    <select id="getListForNoSpecial4" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.DepartmentListResVO">
+        SELECT  round(sum(total_score)/count(employee_list.id),2) as totalScore,
+             round(sum(review_score)/count(employee_list.id),2) as reviewScore,
+             round(sum(maintain_score)/count(employee_list.id),2) as maintainScore,
+             round(sum(develop_score)/count(employee_list.id),2) as developScore,
+             round(sum(add_score)/count(employee_list.id),2) as addScore,
+             round(sum(platform_score)/count(employee_list.id),2) as platformScore,
+             quarter_score.currentdpt as currentdpt,position as city,
+             count(employee_list.id) as member
+        from quarter_score
+        left join employee_list ON quarter_score.account = employee_list.account
+        where 1=1
+        <if test="param.special !=null and param.special !='' ">
+            and quarter_score.special = #{param.special}
+        </if>
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and quarter_score.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.position !=null and param.position !='' ">
+            and employee_list.position = #{param.position}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+	        and quarter_score.quarter = #{param.quarter}
+		</if>
+		<if test="param.thirddptcode !=null and param.thirddptcode !='' ">
+	        and quarter_score.thirddptcode in
+			<foreach collection="param.thirddptcode" item="code" index="index"
+				open="(" close=")" separator=",">
+				#{code}
+			</foreach>
+		</if>
+		<if test="param.currentdptcode !=null and param.currentdptcode !='' ">
+	        and quarter_score.currentdptcode in
+			<foreach collection="param.currentdptcode" item="code" index="index"
+				open="(" close=")" separator=",">
+				#{code}
+			</foreach>
+		</if>
+        group by quarter_score.currentdptcode
+    </select>
+    
+    <select id="getListForSpecial4" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.DepartmentListResVO">
+        SELECT  quarter_score.currentdpt as currentdpt,count(employee_list.id) as member
+        from quarter_score
+        left join employee_list ON quarter_score.account = employee_list.account
+        where 1=1 and quarter_score.special=0
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and quarter_score.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.position !=null and param.position !='' ">
+            and employee_list.position = #{param.position}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+	        and quarter_score.quarter = #{param.quarter}
+		</if>
+		<if test="param.thirddptcode !=null and param.thirddptcode !='' ">
+	        and quarter_score.thirddptcode in
+			<foreach collection="param.thirddptcode" item="code" index="index"
+				open="(" close=")" separator=",">
+				#{code}
+			</foreach>
+		</if>
+		<if test="param.currentdptcode !=null and param.currentdptcode !='' ">
+	        and quarter_score.currentdptcode in
+			<foreach collection="param.currentdptcode" item="code" index="index"
+				open="(" close=")" separator=",">
+				#{code}
+			</foreach>
+		</if>
+        group by quarter_score.currentdptcode
+    </select>
+    
+    <select id="getRankListFor4" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.DepartmentListResVO">
+        SELECT  round(sum(total_score)/count(employee_list.id),2) as totalScore,
+             round(sum(review_score)/count(employee_list.id),2) as reviewScore,
+             round(sum(maintain_score)/count(employee_list.id),2) as maintainScore,
+             round(sum(develop_score)/count(employee_list.id),2) as developScore,
+             round(sum(add_score)/count(employee_list.id),2) as addScore,
+             round(sum(platform_score)/count(employee_list.id),2) as platformScore,
+             quarter_score.currentdpt as currentdpt,position as city
+        from quarter_score
+        left join employee_list ON quarter_score.account = employee_list.account
+        where 1=1 
+        <if test="param.special !=null and param.special !='' ">
+            and quarter_score.special = #{param.special}
+        </if>
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and quarter_score.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.position !=null and param.position !='' ">
+            and employee_list.position = #{param.position}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+	        and quarter_score.quarter = #{param.quarter}
+		</if>
+        group by quarter_score.currentdptcode
+        order by sum(total_score)/count(employee_list.id) desc
+    </select>
+    
+    
+    <select id="getListForEmployee" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.EmployeeListResVO">
+        SELECT  employee_list.account,employee_list.name,employee_list.id,position,
+		        employee_list.type as positiontype,total_score as totalScore,review_score as reviewScore,
+		        maintain_score as maintainScore,develop_score as developScore,add_score as addScore,platform_score as platformScore,positionlevel,
+		        charge_score as chargeScore,quarter_score.firstdpt,quarter_score.seconddpt,quarter_score.thirddpt,
+		        quarter,quarter_score.currentdpt,quarter_score.fivedpt,quarter_score.special
+        from quarter_score
+        join employee_list ON quarter_score.account = employee_list.account
+        where 1=1 
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and quarter_score.seconddptcode = #{param.seconddptcode}
+        </if>
+         <if test="param.thirddptcode !=null and param.thirddptcode !='' ">
+            and quarter_score.thirddptcode = #{param.thirddptcode}
+        </if>
+         <if test="param.currentdptcode !=null and param.currentdptcode !='' ">
+            and quarter_score.currentdptcode = #{param.currentdptcode}
+        </if>
+         <if test="param.fivedptcode !=null and param.fivedptcode !='' ">
+            and quarter_score.fivedptcode = #{param.fivedptcode}
+        </if>
+        <if test="param.position !=null and param.position !='' ">
+            and employee_list.position = #{param.position}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.type !=null and param.type !='' ">
+            and employee_list.type = #{param.type}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+	        and quarter_score.quarter = #{param.quarter}
+		</if>
+		<if test="param.employeeSearchKey !=null and param.employeeSearchKey !='' ">
+            and 
+            (employee_list.account like CONCAT(CONCAT('%', #{param.employeeSearchKey}), '%')
+            or 
+            employee_list.name like CONCAT(CONCAT('%', #{param.employeeSearchKey}), '%')
+            )
+        </if>
+        group by employee_list.id
+        order by total_score desc
+    </select>
+    
+    <select id="getRankForEmployee" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.RankResVO">
+        SELECT employee_list.account,total_score as score
+        FROM quarter_score 
+        JOIN employee_list ON quarter_score.account = employee_list.account
+        WHERE 1=1
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and employee_list.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+	        and quarter_score.quarter = #{param.quarter}
+		</if>
+		<if test="param.employeeSearchKey !=null and param.employeeSearchKey !='' ">
+            and 
+            (employee_list.account like CONCAT(CONCAT('%', #{param.employeeSearchKey}), '%')
+            or 
+            employee_list.name like CONCAT(CONCAT('%', #{param.employeeSearchKey}), '%')
+            )
+        </if>
+        group by employee_list.id
+        order by total_score desc
+    </select>
+    
+    <select id="getRank1ForEmployee" parameterType="java.util.Map" resultType="com.h3c.itrd.core.vo.RankResVO">
+        SELECT employee_list.account,total_score as score
+        FROM quarter_score 
+        JOIN employee_list ON quarter_score.account = employee_list.account
+        WHERE 1=1
+        <if test="param.seconddptcode !=null and param.seconddptcode !='' ">
+            and employee_list.seconddptcode = #{param.seconddptcode}
+        </if>
+        <if test="param.postType !=null and param.postType !='' ">
+            and employee_list.postType = #{param.postType}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+	        and quarter_score.quarter  = #{param.quarter}
+		</if>
+		<if test="param.employeeSearchKey !=null and param.employeeSearchKey !='' ">
+            and 
+            (employee_list.account like CONCAT(CONCAT('%', #{param.employeeSearchKey}), '%')
+            or 
+            employee_list.name like CONCAT(CONCAT('%', #{param.employeeSearchKey}), '%')
+            )
+        </if>
+        group by employee_list.id
+        order by (total_score+charge_score) desc
+    </select>
+    
+    
+</mapper>

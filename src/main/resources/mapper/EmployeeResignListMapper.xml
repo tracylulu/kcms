@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.EmployeeResignListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.EmployeeResignListDO">
+        <result column="id" property="id" />
+        <result column="leavedate" property="leavedate" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+		id, leavedate, sync_status, sync_time
+	</sql>
+	<insert id="batchInsertDismissionUser" parameterType="list">
+		<foreach collection="list" item="item" index="index" open=""
+			close="" separator=";">
+			insert into employee_resign_list set
+			id=#{item.id},leavedate=#{item.leavedate},sync_time=#{item.syncTime}
+		</foreach>
+	</insert>
+	<delete id="deleteAllInfo">
+	delete from employee_resign_list
+	</delete>
+</mapper>

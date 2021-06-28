@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.PlatformSummaryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.PlatformSummaryDO">
+        <id column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="quarter" property="quarter" />
+        <result column="total_score" property="totalScore" />
+        <result column="experience_score" property="experienceScore" />
+        <result column="patent_score" property="patentScore" />
+        <result column="spec_score" property="specScore" />
+        <result column="sharedoc_score" property="sharedocScore" />
+        <result column="cbb_score" property="cbbScore" />
+        <result column="experience_num" property="experienceNum" />
+        <result column="patent_num" property="patentNum" />
+        <result column="spec_num" property="specNum" />
+        <result column="sharedoc_num" property="sharedocNum" />
+        <result column="ynfx_score" property="ynfxScore" />
+        <result column="ynfx_success" property="ynfxSuccess" />
+        <result column="ynfx_error" property="ynfxError" />
+        <result column="cbb_num" property="cbbNum" />
+        <result column="countDate" property="countDate" />
+        <result column="domainid" property="domainid" />
+        <result column="userId" property="userId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, account, quarter, total_score, experience_score, patent_score, spec_score, sharedoc_score, cbb_score, experience_num, patent_num, spec_num, sharedoc_num, ynfx_score, ynfx_success, ynfx_error, cbb_num, countDate, domainid, userId
+    </sql>
+
+
+</mapper>

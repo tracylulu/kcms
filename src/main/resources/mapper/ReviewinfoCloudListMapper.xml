@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.ReviewinfoCloudListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.ReviewinfoCloudListDO">
+        <id column="id" property="id" />
+        <result column="job_number" property="jobNumber" />
+        <result column="review_count" property="reviewCount" />
+        <result column="review_date" property="reviewDate" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="sync_time" property="syncTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, job_number, review_count, review_date, sync_status, sync_time
+    </sql>
+
+	<select id="getReviewCountByParam" parameterType="map" resultType="java.lang.Integer">
+        SELECT IFNULL(SUM(review_count), 0)
+        FROM reviewinfo_cloud_list
+        WHERE 1=1
+        <if test="param.account !=null and param.account !='' ">
+            and job_number = #{param.account}
+        </if>
+        <if test="param.start !=null and param.start !='' ">
+            AND review_date &gt;= #{param.start}
+        </if>
+        <if test="param.end !=null and param.end !='' ">
+            AND review_date &lt;= #{param.end}
+        </if>
+
+    </select>
+    
+</mapper>

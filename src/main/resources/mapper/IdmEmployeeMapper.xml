@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.IdmEmployeeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.IdmEmployeeDO">
+        <id column="id" property="id" />
+        <result column="seconddptcode" property="seconddptcode" />
+        <result column="account" property="account" />
+        <result column="quarter" property="quarter" />
+        <result column="totalscore" property="totalscore" />
+        <result column="normalTotalScore" property="normalTotalScore" />
+        <result column="normalSubmitNum" property="normalSubmitNum" />
+        <result column="normalEditNum" property="normalEditNum" />
+        <result column="normalExamineNum" property="normalExamineNum" />
+        <result column="syncTotalScore" property="syncTotalScore" />
+        <result column="syncEditNum" property="syncEditNum" />
+        <result column="syncExamineNum" property="syncExamineNum" />
+        <result column="normalLocationNum" property="normalLocationNum" />
+        <result column="countDate" property="countDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, seconddptcode, account, quarter, totalscore, normalTotalScore, normalSubmitNum, normalEditNum, normalExamineNum, syncTotalScore, syncEditNum, syncExamineNum, normalLocationNum, countDate
+    </sql>
+
+	<select id="getSoftMaintainList" parameterType="map" resultType="com.h3c.itrd.core.vo.IdmEmployeeVO">
+        SELECT IFNULL(totalscore,0) as maintainscore,IFNULL(normalTotalScore,0) as score,
+        IFNULL(sum(normalSubmitNum + normalEditNum + normalExamineNum+ normalLocationNum),0) as count,
+        IFNULL(syncTotalScore,0) as syncscore,IFNULL(sum(syncEditNum + syncExamineNum),0)  as synccount
+        FROM idm_employee
+        where 1=1
+        <if test="param.account !=null and param.account !='' ">
+            and account = #{param.account}
+        </if>
+        <if test="param.quarter !=null and param.quarter !='' ">
+            and quarter = #{param.quarter}
+        </if>
+    </select>
+    
+</mapper>

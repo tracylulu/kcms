@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.DptaveragescoreListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.DptaveragescoreListDO">
+        <id column="id" property="id" />
+        <result column="dptcode" property="dptcode" />
+        <result column="quarter" property="quarter" />
+        <result column="ATaveragescore" property="ATaveragescore" />
+        <result column="Auditaveragescore" property="Auditaveragescore" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, dptcode, quarter, ATaveragescore, Auditaveragescore
+    </sql>
+
+</mapper>

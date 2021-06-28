@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.HcmmSummaryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.HcmmSummaryDO">
+        <id column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="board_size" property="boardSize" />
+        <result column="add_size" property="addSize" />
+        <result column="full_score" property="fullScore" />
+        <result column="flexible" property="flexible" />
+        <result column="score" property="score" />
+        <result column="contribution" property="contribution" />
+        <result column="quarter" property="quarter" />
+        <result column="score_type" property="scoreType" />
+        <result column="PrintName" property="PrintName" />
+        <result column="rx" property="rx" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, account, board_size, add_size, full_score, flexible, score, contribution, quarter, score_type, PrintName, rx
+    </sql>
+
+</mapper>

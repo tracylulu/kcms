@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h3c.itrd.core.mapper.IsoftProjectNewListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.h3c.itrd.core.entity.IsoftProjectNewListDO">
+        <result column="projectId" property="projectId" />
+        <result column="projectName" property="projectName" />
+        <result column="proType" property="proType" />
+        <result column="seconddptcode" property="seconddptcode" />
+        <result column="currentdptcode" property="currentdptcode" />
+        <result column="state" property="state" />
+        <result column="PCBType" property="PCBType" />
+        <result column="PM" property="pm" />
+        <result column="TL" property="tl" />
+        <result column="Review" property="Review" />
+        <result column="Members" property="Members" />
+        <result column="PlanScale" property="PlanScale" />
+        <result column="ActualScale" property="ActualScale" />
+        <result column="PlanManHours" property="PlanManHours" />
+        <result column="FactManHours" property="FactManHours" />
+        <result column="PlanProRate" property="PlanProRate" />
+        <result column="FactProRate" property="FactProRate" />
+        <result column="PlanStartTime" property="PlanStartTime" />
+        <result column="StartTime" property="StartTime" />
+        <result column="PlanCheckEndTime" property="PlanCheckEndTime" />
+        <result column="CheckEndTime" property="CheckEndTime" />
+        <result column="PlanEndTime" property="PlanEndTime" />
+        <result column="EndTime" property="EndTime" />
+        <result column="FirstPauseTime" property="FirstPauseTime" />
+        <result column="FirstRecoverTime" property="FirstRecoverTime" />
+        <result column="SecondPauseTime" property="SecondPauseTime" />
+        <result column="SecondRecoverTime" property="SecondRecoverTime" />
+        <result column="ATDescription" property="ATDescription" />
+        <result column="ATEvaluation" property="ATEvaluation" />
+        <result column="ATDI" property="atdi" />
+        <result column="TotalDI" property="TotalDI" />
+        <result column="ScheduleForST" property="ScheduleForST" />
+        <result column="ScheduleForAll" property="ScheduleForAll" />
+        <result column="Ext1" property="Ext1" />
+        <result column="ContributeValue" property="ContributeValue" />
+        <result column="Difficult" property="Difficult" />
+        <result column="Url" property="Url" />
+        <result column="CAEvaluation" property="CAEvaluation" />
+        <result column="AuditScore" property="AuditScore" />
+        <result column="ResGroupName" property="ResGroupName" />
+        <result column="FourthOrg" property="FourthOrg" />
+        <result column="PlanNewScale" property="PlanNewScale" />
+        <result column="PlanMoveScale" property="PlanMoveScale" />
+        <result column="FactNewScale" property="FactNewScale" />
+        <result column="FactMoveScale" property="FactMoveScale" />
+        <result column="AppraiseID" property="AppraiseID" />
+        <result column="AppraiseEva" property="AppraiseEva" />
+        <result column="AppraisalProjectDI" property="AppraisalProjectDI" />
+        <result column="AppraiseDI" property="AppraiseDI" />
+        <result column="TC" property="tc" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        projectId, projectName, proType, seconddptcode, currentdptcode, state, PCBType, PM, TL, Review, Members, PlanScale, ActualScale, PlanManHours, FactManHours, PlanProRate, FactProRate, PlanStartTime, StartTime, PlanCheckEndTime, CheckEndTime, PlanEndTime, EndTime, FirstPauseTime, FirstRecoverTime, SecondPauseTime, SecondRecoverTime, ATDescription, ATEvaluation, ATDI, TotalDI, ScheduleForST, ScheduleForAll, Ext1, ContributeValue, Difficult, Url, CAEvaluation, AuditScore, ResGroupName, FourthOrg, PlanNewScale, PlanMoveScale, FactNewScale, FactMoveScale, AppraiseID, AppraiseEva, AppraisalProjectDI, AppraiseDI, TC
+    </sql>
+
+</mapper>
